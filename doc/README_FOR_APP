@@ -1,5 +1,5 @@
-To build the guides:
-
-* Install source-highlighter (http://www.gnu.org/software/src-highlite/source-highlight.html)
-* Install the mizuho gem (http://github.com/FooBarWidget/mizuho/tree/master)
-* Run `rake guides` from the railties directory
+* Commit comments only in english
+* Development code only in english
+* BDD and TDD with cucumber and rspec, what means that you are supposed to ALWAYS write some cucumber tests first, then the necessary rspec, then code. Always remember that this is an app to support dojo sessions
+* Do NOT use scaffold ever
+* If you need same script/generator, use script/generate (rspec_model/rspec_controller) instead
