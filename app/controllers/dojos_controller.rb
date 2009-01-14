@@ -1,4 +1,8 @@
 class DojosController < ApplicationController
+  def index
+    @dojos = Dojo.find(:all)
+  end
+  
   def new
     @dojo = Dojo.new
   end
@@ -6,6 +10,6 @@ class DojosController < ApplicationController
   def create
     @dojo = Dojo.new(params[:dojo])
     @dojo.save
-    redirect_to :action => "index"
+    redirect_to root_url
   end
 end

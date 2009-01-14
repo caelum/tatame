@@ -4,23 +4,31 @@ describe DojosController do
   
   before(:each) do
     @dojo = mock_model(Dojo)
-    @dojo.stub!(:new_record?).and_return(true)
+    @dojos = mock_model(Dojo)
+    #@dojo.stub!(:new_record?).and_return(true)
   end
   
   it "should make a new dojo" do
-    Dojo.should_receive(:new).and_return(@dojo)
+    Dojo.should_receive(:new).once.and_return(@dojo)
     
     post 'new'
     assigns[:dojo].should equal(@dojo)
   end
   
-  it "should save the dojo and redirect to index" do
-    Dojo.should_receive(:new).and_return(@dojo)
-    @dojo.should_receive(:save).and_return(true)
+  it "should save the dojo and redirect to root_url" do
+    Dojo.should_receive(:new).once.and_return(@dojo)
+    @dojo.should_receive(:save).once.and_return(true)
     
     post 'create'
     assigns[:dojo].should equal(@dojo)
-    response.should redirect_to(:action => 'index')
+    response.should redirect_to root_url
+  end
+  
+  it "should list all dojos" do
+    Dojo.should_receive(:find).once.with(:all).and_return(@dojos)
+    
+    get 'index'
+    assigns[:dojos].should equal(@dojos)
   end
   
   it "should go to back to the form on validation errors" do
