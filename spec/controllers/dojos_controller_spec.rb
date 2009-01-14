@@ -23,7 +23,9 @@ describe DojosController do
     response.should redirect_to(:action => 'index')
   end
   
-  it "should go to back to the form on validation errors"
+  it "should go to back to the form on validation errors" do
+    
+  end
   
   it "should be able to destroy dojos and associated itens"
 end
