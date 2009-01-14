@@ -5,7 +5,10 @@ describe DojosController do
   before(:each) do
     @dojo = mock_model(Dojo)
     @dojos = mock_model(Dojo)
+    @dojos.stub!(:first).and_return(@dojo)
+    @dojos.stub!(:delete_at).and_return(@dojos)
     #@dojo.stub!(:new_record?).and_return(true)
+    
   end
   
   it "should make a new dojo" do
@@ -25,15 +28,15 @@ describe DojosController do
   end
   
   it "should list all dojos" do
-    Dojo.should_receive(:find).once.with(:all).and_return(@dojos)
-    
+    date = Time.now
+    Time.stub!(:now).and_return(date)
+    Dojo.should_receive(:find).once.with(:all, :conditions => ["date > ?", date], :order => "date ASC").and_return(@dojos)
     get 'index'
     assigns[:dojos].should equal(@dojos)
+    assigns[:dojo].should equal(@dojo)
   end
   
-  it "should go to back to the form on validation errors" do
-    
-  end
+  it "should go to back to the form on validation errors"
   
   it "should be able to destroy dojos and associated itens"
 end

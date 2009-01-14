@@ -21,7 +21,7 @@ Then /there should be (\d+) dojos left/ do |n|
   response.should have_tag("table tr", n.to_i + 1) # There is a header row too
 end
 
-Then /^the next dojo (\w+) should be "(.*)"/ do |id, item|
+Then /^the next dojo (\w+) should be "(.*)"$/ do |id, item|
   response.should have_tag("div") do
     with_tag("span##{id}", "#{item}")
   end
@@ -34,3 +34,38 @@ Then /^I should see an empty presence list$/ do
     end
   end
 end
+
+Given /^there is a dojo scheduled for tomorrow$/ do
+  Dojo.transaction do
+    Dojo.destroy_all
+    Dojo.create! :date => Time.now + 24 * 60 * 60, :time => Time.now
+  end
+end
+
+When /^I select day after tomorrow as the date$/ do
+  date = Time.now + 2 * 24 * 60 * 60
+  select_date(date, :from => "date")
+end
+
+Then /^the next dojo date should be tomorrow$/ do
+  response.should have_tag("div#next") do
+    date = (Time.now + 24 * 60 * 60).strftime("%Y-%m-%d")
+    with_tag("span#date", "#{date}")
+  end
+end
+
+Then /^I should see a dojo scheduled to the day after tomorrow$/ do
+  response.should have_tag("div#schedule") do
+    with_tag("ol") do
+      date = (Time.now + 2 * 24 * 60 * 60).strftime("%Y-%m-%d")
+      with_tag("li", "#{date} - 22:00")
+    end
+  end
+end
+
+When /^I select tomorrow as the date$/ do
+  date = Time.now + 24 * 60 * 60
+  select_date(date, :from => "date")
+end
+
+
