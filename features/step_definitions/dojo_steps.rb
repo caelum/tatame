@@ -21,7 +21,11 @@ Then /there should be (\d+) dojos left/ do |n|
   response.should have_tag("table tr", n.to_i + 1) # There is a header row too
 end
 
-Then /^"(.*)" should be the next dojo$/ do |title|
+Then /^the next dojo date should be "(.*)"/ do |date|
+  
+end
+
+Then /^the next dojo time should be "(.*)"/ do |time|
   
 end
 
