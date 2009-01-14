@@ -24,13 +24,6 @@ describe DojosController do
     response.should redirect_to root_url
   end
   
-  it "should list all dojos" do
-    Dojo.should_receive(:find).once.with(:all).and_return(@dojos)
-    
-    get 'index'
-    assigns[:dojos].should equal(@dojos)
-  end
-  
   it "should go to back to the form on validation errors" do
     
   end
