@@ -1,5 +1,5 @@
 Given /I am on the new dojo page/ do
-  visits "/dojos/new"
+  visit "/dojos/new"
 end
 
 Given /there are (\d+) dojos/ do |n|
