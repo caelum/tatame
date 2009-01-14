@@ -28,6 +28,9 @@ Then /^the next dojo (\w+) should be "(.*)"/ do |id, item|
 end
 
 Then /^I should see an empty presence list$/ do
-  visit root_url
-  
+  response.should have_tag("div") do
+    with_tag("ul") do
+      without_tag("li")
+    end
+  end
 end
