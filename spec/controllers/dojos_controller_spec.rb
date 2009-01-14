@@ -23,7 +23,7 @@ describe DojosController do
     
     post 'create'
     assigns[:dojo].should equal(@dojo)
-    response.should redirect_to root_url
+    response.should redirect_to(root_url)
   end
   
   it "should list all dojos" do
