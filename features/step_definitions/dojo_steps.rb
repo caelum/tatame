@@ -22,7 +22,7 @@ Then /there should be (\d+) dojos left/ do |n|
 end
 
 Then /^"(.*)" should be the next dojo$/ do |title|
-  
+  response.body.should =~ "Next Dojo: #{title}"
 end
 
 Then /^I should see an empty presence list$/ do

@@ -1,7 +1,4 @@
 <% form_for :dojo, @dojo, :url => { :action => "create" } do |f| %>
-	<%= label(:dojo, :title) %>
-	<%= f.text_field :title %>
-	
 	<%= label(:dojo, :date) %>
 	<%= date_select ("dojo", "date") %>
 	
