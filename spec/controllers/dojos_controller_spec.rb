@@ -7,6 +7,13 @@ describe DojosController do
     @dojo.stub!(:new_record?).and_return(true)
   end
   
+  it "should make a new dojo" do
+    Dojo.should_receive(:new).and_return(@dojo)
+    
+    post 'new'
+    assigns[:dojo].should equal(@dojo)
+  end
+  
   it "should save the dojo and redirect to index" do
     Dojo.should_receive(:new).and_return(@dojo)
     @dojo.should_receive(:save).and_return(true)
