@@ -4,7 +4,7 @@
 	<% if @dojo != nil %>
 		<span id="date"><%=h @dojo.date %></span>
 		<span id="time"><%=h show_time(@dojo.time) %></span>
-	
+		<span id="comment"><%=h @dojo.comment %></span>
 		<ul>
 		</ul>
 	<% else %>
@@ -19,3 +19,5 @@
 		<% end %>
 	</ol>
 </div>
+
+<%= link_to 'New', new_dojo_path %>

@@ -4,6 +4,9 @@
 	
 	<%= label(:dojo, :time) %>
 	<%= time_select ("dojo", "time") %>
+	
+	<%= label(:dojo, :comment) %>
+	<%= f.text_area :comment %>
 
 	<%= submit_tag 'Create' %>
 <% end %>
