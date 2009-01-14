@@ -23,7 +23,7 @@ Scenario: Create next dojos
 	Then the next dojo date should be tomorrow
   And I should see a dojo scheduled to the day after tomorrow
 
-Scenario: 
+Scenario: No dojo created
   Given There is no scheduled dojo
   When I am on the root page
   Then I should see "No scheduled dojos"

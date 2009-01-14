@@ -72,3 +72,10 @@ When /^I am on the root page$/ do
   visit root_url
 end
 
+Given /^There is no scheduled dojo$/ do
+  Dojo.transaction do
+    Dojo.destroy_all
+  end
+end
+
+
