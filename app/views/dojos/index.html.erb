@@ -1,12 +1,17 @@
 <h1>Tatame</h1>
 
 <div id="next">
-	<span id="date"><%=h @dojo.date %></span>
-	<span id="time"><%=h show_time(@dojo.time) %></span>
+	<% if @dojo != nil %>
+		<span id="date"><%=h @dojo.date %></span>
+		<span id="time"><%=h show_time(@dojo.time) %></span>
 	
-	<ul>
-	</ul>
+		<ul>
+		</ul>
+	<% else %>
+		No scheduled dojos
+	<% end %>
 </div>
+
 <div id="schedule">
 	<ol>
 		<% for dojo in @dojos %>

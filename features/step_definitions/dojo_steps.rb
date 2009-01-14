@@ -68,4 +68,7 @@ When /^I select tomorrow as the date$/ do
   select_date(date, :from => "date")
 end
 
+When /^I am on the root page$/ do
+  visit root_url
+end
 
