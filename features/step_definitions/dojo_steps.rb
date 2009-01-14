@@ -21,14 +21,13 @@ Then /there should be (\d+) dojos left/ do |n|
   response.should have_tag("table tr", n.to_i + 1) # There is a header row too
 end
 
-Then /^the next dojo date should be "(.*)"/ do |date|
-  visits root_url
-end
-
-Then /^the next dojo time should be "(.*)"/ do |time|
-  
+Then /^the next dojo (\w+) should be "(.*)"/ do |id, item|
+  response.should have_tag("div") do
+    with_tag("span##{id}", "#{item}")
+  end
 end
 
 Then /^I should see an empty presence list$/ do
+  visit root_url
   
 end

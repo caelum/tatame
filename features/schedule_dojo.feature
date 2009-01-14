@@ -7,9 +7,9 @@ Feature: Schedule a dojo session
 
 Scenario: Create presence list
   Given I am on the new dojo page
-  When I select "10/01/2008" as the "date" date
+  When I select "2008-10-01" as the "date" date
   And I select "22:00" as the "time" time
   And I press "Create"
-	Then the next dojo date should be "10/01/2008"
+	Then the next dojo date should be "2008-10-01"
 	And the next dojo time should be "22:00"
   And I should see an empty presence list
