@@ -1,4 +1,8 @@
 class DojosController < ApplicationController  
+  def index
+    @dojos = Dojo.find(:all)
+  end
+  
   def new
     @dojo = Dojo.new
   end

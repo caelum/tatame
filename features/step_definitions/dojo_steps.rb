@@ -22,7 +22,7 @@ Then /there should be (\d+) dojos left/ do |n|
 end
 
 Then /^the next dojo date should be "(.*)"/ do |date|
-  
+  visits root_url
 end
 
 Then /^the next dojo time should be "(.*)"/ do |time|
