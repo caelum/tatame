@@ -5,8 +5,7 @@ describe DojosController do
   before(:each) do
     @dojo = mock_model(Dojo)
     @dojos = mock_model(Dojo)
-    @dojos.stub!(:first).and_return(@dojo)
-    @dojos.stub!(:delete_at).and_return(@dojos)
+    @dojos.stub!(:shift).and_return(@dojo)
     #@dojo.stub!(:new_record?).and_return(true)
     
   end
