@@ -1,8 +1,7 @@
 class DojosController < ApplicationController  
   def index
     @dojos = Dojo.find(:all, :conditions => ["date > ?", Time.now], :order => "date ASC")
-    @dojo = @dojos.first
-    @dojos.delete_at(0)
+    @dojo = @dojos.shift
   end
   
   def new
