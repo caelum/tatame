@@ -8,7 +8,7 @@ Feature: Schedule a dojo session
 Scenario: Create first dojo
   Given I am on the root page
   When I follow "New"
-	And I select the "date" 1 days from now
+	And I select 1 days from now as the date and time
 	And I fill in "comment" with "A comment"
   And I press "Create"
 	Then the next dojo should be in 1 days
@@ -18,7 +18,7 @@ Scenario: Create first dojo
 Scenario: Create next dojos
   Given I am on the new dojo page
 	And there are 1 dojos scheduled starting in 1 days
-  When I select the "date" 2 days from now
+  When I select 2 days from now as the date and time
   And I press "Create"
 	Then the next dojo should be in 1 days
   And I should see a dojo in 2 days inside the schedule tag
@@ -29,3 +29,13 @@ Scenario: No dojo created
   Then I should see "No scheduled dojos"
 
 Scenario: Create dojo before today
+	Given There is no scheduled dojo
+	When I am on the new dojo page
+	And I select -2 days from now as the date and time
+	And I press "Create"
+	Then I should see "No scheduled dojos"
+	
+Scenario: Create dojo with no date
+	Given I am on the new dojo page
+  When I create a dojo with no date
+  Then I should see "Date can't be blank"

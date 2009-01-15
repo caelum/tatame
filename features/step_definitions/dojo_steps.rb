@@ -22,17 +22,17 @@ When /I delete the first dojo/ do
   clicks_link "Destroy"
 end
 
-When /^I select the "(.*)" (\d+) days from now$/ do |datetime_label, n|
+When /^I select ([-]{0,1}\d+) days from now as the date and time$/ do |n|
   datetime = today + n.to_i.days
-  select_datetime(datetime, :from => datetime_label)
+  select_datetime(datetime)
 end
 
 When /^I am on the root page$/ do
   visit root_url
 end
 
-def test
-  "5"
+When /^I create a dojo with no date$/ do
+  visit "/dojos/create"
 end
 
 Then /there should be (\d+) dojos left/ do |n|
