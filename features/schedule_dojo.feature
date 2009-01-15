@@ -8,20 +8,17 @@ Feature: Schedule a dojo session
 Scenario: Create first dojo
   Given I am on the root page
   When I follow "New"
-	And I select tomorrow as the date
-  And I select "22:00" as the "time" time
+	And I select tomorrow as the "date" date and time
 	And I fill in "comment" with "A comment"
   And I press "Create"
 	Then the next dojo date should be tomorrow
-	And the next dojo time should be "22:00"
 	And the next dojo comment should be "A comment"
   And I should see an empty presence list
 
 Scenario: Create next dojos
   Given I am on the new dojo page
 	And there is a dojo scheduled for tomorrow
-  When I select day after tomorrow as the date
-  And I select "22:00" as the "time" time
+  When I select day after tomorrow as the "date" date and time
   And I press "Create"
 	Then the next dojo date should be tomorrow
   And I should see a dojo scheduled to the day after tomorrow
@@ -33,8 +30,6 @@ Scenario: No dojo created
 
 Scenario: Create dojo with invalid date
 	Given I am on the new dojo page
-	When I select "01/01/2007" as the "date" date
-  And I select "22:00" as the "time" time
+	When I select "2007-01-01 22:00" as the "date" date and time
   And I press "Create"
-	Then I am on the new dojo page
-	And I should see "Date cannot be before today"
+	Then I should see "Date can't be before today"

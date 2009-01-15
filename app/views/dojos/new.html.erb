@@ -1,9 +1,8 @@
+<%= error_messages_for :dojo %>
+
 <% form_for :dojo, @dojo, :url => { :action => "create" } do |f| %>
 	<%= label(:dojo, :date) %>
-	<%= date_select ("dojo", "date") %>
-	
-	<%= label(:dojo, :time) %>
-	<%= time_select ("dojo", "time") %>
+	<%= datetime_select ("dojo", "date") %>
 	
 	<%= label(:dojo, :comment) %>
 	<%= f.text_area :comment %>

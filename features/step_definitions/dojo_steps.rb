@@ -12,7 +12,7 @@ Given /there are (\d+) dojos/ do |n|
 end
 
 When /I delete the first dojo/ do
-  visits dojos_url
+  visit dojos_url
   clicks_link "Destroy"
 end
 
@@ -38,18 +38,13 @@ end
 Given /^there is a dojo scheduled for tomorrow$/ do
   Dojo.transaction do
     Dojo.destroy_all
-    Dojo.create! :date => Time.now + 24 * 60 * 60, :time => Time.now
+    Dojo.create! :date => Time.now + 1.days
   end
-end
-
-When /^I select day after tomorrow as the date$/ do
-  date = Time.now + 2 * 24 * 60 * 60
-  select_date(date, :from => "date")
 end
 
 Then /^the next dojo date should be tomorrow$/ do
   response.should have_tag("div#next") do
-    date = (Time.now + 24 * 60 * 60).strftime("%Y-%m-%d")
+    date = (Time.now + 1.days).strftime("%Y-%m-%d - %H:%M")
     with_tag("span#date", "#{date}")
   end
 end
@@ -57,15 +52,20 @@ end
 Then /^I should see a dojo scheduled to the day after tomorrow$/ do
   response.should have_tag("div#schedule") do
     with_tag("ol") do
-      date = (Time.now + 2 * 24 * 60 * 60).strftime("%Y-%m-%d")
-      with_tag("li", "#{date} - 22:00")
+      date = (Time.now + 2.days).strftime("%Y-%m-%d - %H:%M")
+      with_tag("li", "#{date}")
     end
   end
 end
 
-When /^I select tomorrow as the date$/ do
-  date = Time.now + 24 * 60 * 60
-  select_date(date, :from => "date")
+When /^I select tomorrow as the "(.*)" date and time$/ do |datetime_label|
+  datetime = Time.now + 1.days
+  select_datetime(datetime, :from => datetime_label)
+end
+
+When /^I select day after tomorrow as the "(.*)" date and time$/ do |datetime_label|
+  datetime = Time.now + 2.days
+  select_datetime(datetime, :from => datetime_label)
 end
 
 When /^I am on the root page$/ do

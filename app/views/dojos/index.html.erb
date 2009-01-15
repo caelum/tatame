@@ -2,8 +2,7 @@
 
 <div id="next">
 	<% if @dojo != nil %>
-		<span id="date"><%=h @dojo.date %></span>
-		<span id="time"><%=h show_time(@dojo.time) %></span>
+		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<span id="comment"><%=h @dojo.comment %></span>
 		<ul>
 		</ul>
@@ -15,7 +14,7 @@
 <div id="schedule">
 	<ol>
 		<% for dojo in @dojos %>
-				<li><%=h dojo.date %> - <%=h show_time(dojo.time) %></li>
+				<li><%=h show_date(dojo.date) %></li>
 		<% end %>
 	</ol>
 </div>
