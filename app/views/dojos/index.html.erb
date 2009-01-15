@@ -4,6 +4,7 @@
 	<% if @dojo != nil %>
 		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<span id="comment"><%=h @dojo.comment %></span>
+		<span id="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete %></span>
 		<ul>
 		</ul>
 	<% else %>

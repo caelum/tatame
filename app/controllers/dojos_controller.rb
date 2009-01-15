@@ -16,4 +16,10 @@ class DojosController < ApplicationController
       render :action => "new"
     end
   end
+  
+  def destroy
+    @dojo = Dojo.find(params[:id])
+    @dojo.destroy
+    redirect_to root_url
+  end
 end

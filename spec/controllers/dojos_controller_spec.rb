@@ -44,5 +44,13 @@ describe DojosController do
     response.should render_template("dojos/new")
   end
   
+  it "should delete a dojo without associated itens" do
+    Dojo.should_receive(:find).once.with(params[:id]).and_return(@dojo)
+    @dojo.should_receive(:destroy).once
+    
+    post 'destroy'
+    response.should redirect_to(root_url)
+  end
+  
   it "should be able to destroy dojos and associated itens"
 end
