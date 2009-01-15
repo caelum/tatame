@@ -15,7 +15,10 @@
 <div id="schedule">
 	<ol>
 		<% for dojo in @dojos %>
-				<li><%=h show_date(dojo.date) %></li>
+				<li>
+					<span id="date"><%=h show_date(dojo.date) %></span>
+					<span id="delete"><%= link_to 'delete', dojo, :confirm => 'Are you sure?', :method => :delete %></span>
+				</li>
 		<% end %>
 	</ol>
 </div>
