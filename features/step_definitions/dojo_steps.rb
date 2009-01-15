@@ -6,7 +6,7 @@ Given /there are (\d+) dojos scheduled starting in (\d+) days/ do |n, offset|
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => Time.now + (n.to_i + offset.to_i).days + 60
+      Dojo.create! :date => today + (n.to_i + offset.to_i).days
     end
   end
 end
@@ -23,12 +23,16 @@ When /I delete the first dojo/ do
 end
 
 When /^I select the "(.*)" (\d+) days from now$/ do |datetime_label, n|
-  datetime = Time.now + n.to_i.days + 60
+  datetime = today + n.to_i.days
   select_datetime(datetime, :from => datetime_label)
 end
 
 When /^I am on the root page$/ do
   visit root_url
+end
+
+def test
+  "5"
 end
 
 Then /there should be (\d+) dojos left/ do |n|
@@ -46,7 +50,7 @@ end
 
 Then /^the next dojo should be in (\d+) days$/ do |n|
   response.should have_tag("div#next") do
-    date = (Time.now + n.to_i.days + 60).strftime("%Y-%m-%d - %H:%M")
+    date = (today + n.to_i.days).strftime("%Y-%m-%d - %H:%M")
     with_tag("span#date", "#{date}")
   end
 end
@@ -60,7 +64,7 @@ end
 Then /^I should see a dojo in (\d+) days inside the schedule tag$/ do |n|
   response.should have_tag("div#schedule") do
     with_tag("ol") do
-      date = (Time.now + n.to_i.days + 60).strftime("%Y-%m-%d - %H:%M")
+      date = (today + n.to_i.days).strftime("%Y-%m-%d - %H:%M")
       with_tag("li") do
         with_tag("span#date", "#{date}")
       end
@@ -68,4 +72,6 @@ Then /^I should see a dojo in (\d+) days inside the schedule tag$/ do |n|
   end
 end
 
-
+def today
+  Time.now - (Time.now.min * 60) - Time.now.sec + 1.hour
+end

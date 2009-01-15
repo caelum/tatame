@@ -2,7 +2,7 @@
 
 <% form_for :dojo, @dojo, :url => { :action => "create" } do |f| %>
 	<%= label(:dojo, :date) %>
-	<%= datetime_select("dojo", "date") %>
+	<%= datetime_select("dojo", "date", :minute_step => 15) %>
 	
 	<%= label(:dojo, :comment) %>
 	<%= f.text_area :comment %>
