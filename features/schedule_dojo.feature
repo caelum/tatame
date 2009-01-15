@@ -2,8 +2,8 @@ Feature: Schedule a dojo session
   In order to inform participants when will be the next session
   As an administrator
   I want to be able to create a session
- 	And choose an hour
-	And choose a date
+  And choose an hour
+  And choose a date
 
 Scenario: Create first dojo
   Given I am on the root page
