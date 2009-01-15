@@ -27,9 +27,3 @@ Scenario: No dojo created
   Given There is no scheduled dojo
   When I am on the root page
   Then I should see "No scheduled dojos"
-
-Scenario: Create dojo with invalid date
-	Given I am on the new dojo page
-	When I select "2007-01-01 22:00" as the "date" date and time
-  And I press "Create"
-	Then I should see "Date can't be before today"
