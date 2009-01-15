@@ -35,7 +35,14 @@ describe DojosController do
     assigns[:dojo].should equal(@dojo)
   end
   
-  it "should go to back to the form on validation errors"
+  it "should go back to the form on validation errors" do
+    Dojo.should_receive(:new).once.and_return(@dojo)
+    @dojo.should_receive(:save).once.and_return(false)
+    
+    post 'create'
+    assigns[:dojo].should equal(@dojo)
+    response.should render_template("dojos/new")
+  end
   
   it "should be able to destroy dojos and associated itens"
 end

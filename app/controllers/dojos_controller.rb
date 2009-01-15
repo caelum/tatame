@@ -10,7 +10,10 @@ class DojosController < ApplicationController
   
   def create
     @dojo = Dojo.new(params[:dojo])
-    @dojo.save
-    redirect_to root_url
+    if @dojo.save
+      redirect_to root_url
+    else
+      render :action => "new"
+    end
   end
 end
