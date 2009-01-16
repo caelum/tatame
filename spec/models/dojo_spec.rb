@@ -14,6 +14,8 @@ describe Dojo do
     @dojo = Dojo.new
   end
   
+  it "should know the next date"
+  
   it "should be valid" do
     @dojo.attributes = valid_dojo_attributes
     @dojo.should be_valid
