@@ -5,12 +5,11 @@
 		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<span id="comment"><%=h @dojo.comment %></span>
 		<span id="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
-		
+		<br/><br/>
 		<% form_for @participant do |f| %>
 			<%= f.hidden_field :dojo_id %>
-			<%= f.label :name %><br/>
-			<%= f.text_field :name %><br/>
-			<br/>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
 			<%= f.submit 'Add' %>
 		<% end %>
 		
