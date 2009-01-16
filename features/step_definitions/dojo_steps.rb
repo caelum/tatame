@@ -2,7 +2,7 @@ Given /I am on the new dojo page/ do
   visit "/dojos/new"
 end
 
-Given /there are (\d+) dojos scheduled starting in (\d+) days/ do |n, offset|
+Given /there are (\d+) dojos scheduled starting in ([-]{0,1}\d+) days/ do |n, offset|
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
@@ -11,7 +11,7 @@ Given /there are (\d+) dojos scheduled starting in (\d+) days/ do |n, offset|
   end
 end
 
-Given /^There is no scheduled dojo$/ do
+Given /^there is no scheduled dojo$/ do
   Dojo.transaction do
     Dojo.destroy_all
   end
@@ -73,5 +73,5 @@ Then /^I should see a dojo in (\d+) days inside the schedule tag$/ do |n|
 end
 
 def today
-  Time.now - (Time.now.min * 60) - Time.now.sec + 1.hour
+  Time.utc(Time.now.year, Time.now.month, Time.now.day, 19, 0)
 end

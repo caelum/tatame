@@ -6,12 +6,13 @@ describe DojosController do
     @dojo = mock_model(Dojo)
     @dojos = mock_model(Dojo)
     @dojos.stub!(:shift).and_return(@dojo)
-    #@dojo.stub!(:new_record?).and_return(true)
-    
+    @date = mock_model(Time)
   end
   
   it "should make a new dojo" do
+    Dojo.stub!(:next_date).and_return(@date)
     Dojo.should_receive(:new).once.and_return(@dojo)
+    @dojo.should_receive(:date=).once.with(@date).and_return(@date)
     
     post 'new'
     assigns[:dojo].should equal(@dojo)

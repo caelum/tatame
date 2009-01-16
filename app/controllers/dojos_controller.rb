@@ -6,6 +6,7 @@ class DojosController < ApplicationController
   
   def new
     @dojo = Dojo.new
+    @dojo.date = Dojo.next_date
   end
   
   def create
