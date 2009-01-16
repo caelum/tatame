@@ -22,4 +22,14 @@ describe ParticipantsController do
     post 'destroy'
     response.should redirect_to(root_url)
   end
+  
+  it "should go back to the root page on validation errors" do
+    Participant.should_receive(:new).once.and_return(@participant)
+    @participant.should_receive(:dojo_id=).once
+    @participant.should_receive(:save).once.and_return(false)
+    
+    post 'create'
+    assigns[:participant].should equal(@participant)
+    response.should redirect_to(root_url)
+  end
 end
