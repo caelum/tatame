@@ -1,4 +1,6 @@
 class Dojo < ActiveRecord::Base
+  has_many :participants
+  
   validates_presence_of :date
   
   def self.next_date

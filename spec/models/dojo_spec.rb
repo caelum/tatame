@@ -28,4 +28,8 @@ describe Dojo do
     @dojo.date = Time.now + 1.days
     @dojo.should be_valid
   end
+  
+  it "should relate to participants" do
+    Dojo.reflect_on_association(:participants).should_not be_nil
+  end
 end

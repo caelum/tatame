@@ -35,6 +35,10 @@ When /^I create a dojo with no date$/ do
   visit "/dojos/create"
 end
 
+When /^I create a participant with no dojo_id$/ do
+  visit "/participants/create"
+end
+
 Then /there should be (\d+) dojos left/ do |n|
   Dojo.count.should == n.to_i
   response.should have_tag("table tr", n.to_i + 1) # There is a header row too

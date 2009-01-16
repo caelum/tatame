@@ -5,8 +5,25 @@
 		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<span id="comment"><%=h @dojo.comment %></span>
 		<span id="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
-		<ul>
-		</ul>
+		
+		<% form_for @participant do |f| %>
+			<%= f.hidden_field :dojo_id %>
+			<%= f.label :name %><br/>
+			<%= f.text_field :name %><br/>
+			<br/>
+			<%= f.submit 'Add' %>
+		<% end %>
+		
+		<div id="participants">
+			<ul>
+				<% for participant in @dojo.participants %>
+					<li>
+						<span id="name"><%=h participant.name %></span>
+						<span id="remove"><%= link_to 'remove', participant, :confirm => 'Are you sure?', :method => :delete, :id => "remove_#{participant.name}" %></span>
+					</li>
+				<% end %>
+			</ul>
+		</div>
 	<% else %>
 		No scheduled dojos
 	<% end %>
