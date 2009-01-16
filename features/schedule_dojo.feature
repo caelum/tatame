@@ -14,6 +14,7 @@ Scenario: Create first dojo
 	Then the next dojo should be in 1 days
 	And the next dojo comment should be "A comment"
   And I should see an empty presence list
+	And I should see "Successfully created"
 
 Scenario: Create next dojos
   Given I am on the new dojo page
@@ -22,6 +23,7 @@ Scenario: Create next dojos
   And I press "Create"
 	Then the next dojo should be in 1 days
   And I should see a dojo in 2 days inside the schedule tag
+	And I should see "Successfully created"
 
 Scenario: No dojo created
   Given there is no scheduled dojo
@@ -45,9 +47,11 @@ Scenario: Create dojo using default date when there is no dojo yet
 	And there is no scheduled dojo
   When I press "Create"
   Then the next dojo should be in 7 days
+	And I should see "Successfully created"
 
 Scenario: Create dojo using default date when there is a dojo created last week
   Given there are 1 dojos scheduled starting in 1 days
 	And I am on the new dojo page
   When I press "Create"
   Then I should see a dojo in 8 days inside the schedule tag
+	And I should see "Successfully created"

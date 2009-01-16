@@ -6,7 +6,7 @@ class Dojo < ActiveRecord::Base
   def self.next_date
      dojo = Dojo.find(:first, :conditions => ["date > ?", Time.now - 7.days], :order => "date DESC")
      
-     if dojo == nil
+     if dojo.nil?
        now = Time.now
        date = Time.gm(now.year, now.month, now.day, 19, 0)
      else

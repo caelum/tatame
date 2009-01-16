@@ -7,6 +7,7 @@ describe ParticipantsController do
   
   it "should save the participant and redirect to root_url" do
     Participant.should_receive(:new).once.and_return(@participant)
+    @participant.should_receive(:dojo_id=).once
     @participant.should_receive(:save).once.and_return(true)
     
     post 'create'

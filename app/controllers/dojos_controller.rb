@@ -2,11 +2,7 @@ class DojosController < ApplicationController
   def index
     @dojos = Dojo.find(:all, :conditions => ["date > ?", Time.now], :order => "date ASC")
     @dojo = @dojos.shift
-    
-    if @dojo != nil
-      @participant = Participant.new
-      @participant.dojo_id = @dojo.id
-    end
+    @participant = Participant.new if !@dojo.nil?
   end
   
   def new
@@ -17,6 +13,7 @@ class DojosController < ApplicationController
   def create
     @dojo = Dojo.new(params[:dojo])
     if @dojo.save
+      flash[:notice] = "Successfully created"
       redirect_to root_url
     else
       render :action => "new"
@@ -26,6 +23,7 @@ class DojosController < ApplicationController
   def destroy
     @dojo = Dojo.find(params[:id])
     @dojo.destroy
+    flash[:notice] = "Successfully deleted"
     redirect_to root_url
   end
 end
