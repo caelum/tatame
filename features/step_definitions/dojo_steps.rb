@@ -45,10 +45,8 @@ Then /there should be (\d+) dojos left/ do |n|
 end
 
 Then /^I should see an empty (.+) list$/ do |id|
-  response.should have_tag("div##{id}") do
-    with_tag("ul") do
-      without_tag("li")
-    end
+  response.should have_tag("ul##{id}") do
+    without_tag("li")
   end
 end
 

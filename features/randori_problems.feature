@@ -6,9 +6,9 @@ Feature: Suggest problems for randoris
 Scenario: Add a suggestion when there are no suggestions yet
   Given I am on the root page
   When I follow "Problems"
+  And I follow "New"
   And I fill in "title" with "Rubik's Cube"
   And I fill in "description" with "The famous problem"
-  And I choose "randori"
   And I press "Add"
   Then I should see an empty kata list
   And I should see "Rubik's Cube"

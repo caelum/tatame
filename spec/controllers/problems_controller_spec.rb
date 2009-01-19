@@ -13,8 +13,10 @@ describe ProblemsController do
     assigns[:problem].should equal(@problem)
   end
   it "should list all problems" do
-    Problem.should_receive(:find).once.with(:all).and_return(@problems)
+    Problem.should_receive(:find).once.with(:all, :conditions => ['kata = ?', true]).and_return(@problems)
+    Problem.should_receive(:find).once.with(:all, :conditions => ['kata = ?', false]).and_return(@problems)
     get 'index'
-    assigns[:problems].should equal(@problems)
+    assigns[:katas].should equal(@problems)
+    assigns[:randoris].should equal(@problems)
   end
 end
