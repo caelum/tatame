@@ -4,7 +4,6 @@ describe ProblemsController do
   before(:each) do
     @problem = mock_model(Problem)
     @problems = mock_model(Problem)
-    @problems.stub!(:shift).and_return(@problem)
   end
   it "should make a new problem" do
     Problem.should_receive(:new).once.and_return(@problem)

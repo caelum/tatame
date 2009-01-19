@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
   config.gem "rspec-rails", :lib => "spec/rails"
   # if failing on osx: 
   config.gem "cucumber"
+  config.gem "authlogic"
   config.gem "sqlite3-ruby", :lib => "sqlite3"
   config.gem "aslakhellesoy-webrat", :source => "http://gems.github.com", :lib => "webrat"
   config.gem "spicycode-rcov", :source => "http://gems.github.com", :lib => "rcov"
