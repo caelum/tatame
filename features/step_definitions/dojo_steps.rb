@@ -44,8 +44,8 @@ Then /there should be (\d+) dojos left/ do |n|
   response.should have_tag("table tr", n.to_i + 1) # There is a header row too
 end
 
-Then /^I should see an empty presence list$/ do
-  response.should have_tag("div") do
+Then /^I should see an empty (.+) list$/ do |id|
+  response.should have_tag("div##{id}") do
     with_tag("ul") do
       without_tag("li")
     end
