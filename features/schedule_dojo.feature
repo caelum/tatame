@@ -1,6 +1,6 @@
 Feature: Schedule a dojo session
   In order to inform participants when will be the next session
-  As an administrator
+  As an editor
   I want to be able to create a session
   And choose an hour
   And choose a date
@@ -55,3 +55,5 @@ Scenario: Create dojo using default date when there is a dojo created last week
   When I press "Create"
   Then I should see a dojo in 8 days inside the schedule tag
 	And I should see "Successfully created"
+
+Scenario: I must be an editor
