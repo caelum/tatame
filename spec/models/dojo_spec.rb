@@ -43,8 +43,9 @@ describe Dojo do
       options[:order].should == "date DESC"
       nil
     end
+    date = Time.gm(Time.now.year, Time.now.month, Time.now.day, 19, 0)
     
-    Dojo.next_date.should_not be_nil
+    Dojo.next_date.should be_equal date
   end
   
   it "should say the new date when there is a dojo created recently" do
@@ -60,9 +61,11 @@ describe Dojo do
       options[:order].should == "date DESC"
       @dojo
     end
-    @dojo.should_receive(:date).and_return(@date)
+    date = Time.now
     
-    Dojo.next_date.should_not be_nil
+    @dojo.should_receive(:date).and_return(date)
+    
+    Dojo.next_date.should be_equal date + 7.days
   end
   
   it "should be valid" do
