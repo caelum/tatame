@@ -1,6 +1,6 @@
 Feature: Participants list for next dojo session
   In order to know how many people will come
-  As an administrator
+  As an editor
   I want to have a list where people can mark whether they come or not, without registration
   
 Scenario: Add two names

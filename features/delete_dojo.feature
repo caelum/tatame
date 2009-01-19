@@ -1,6 +1,6 @@
 Feature: Delete a dojo session
   In order avoid the world to see that i have miscreated dojo
-  As an administrator
+  As an editor
   I want be able to delete a dojo WITHOUT review
 
 Scenario: Delete the only future dojo
@@ -26,3 +26,5 @@ Scenario: Delete a scheduled dojo when I have more than one dojo
 	And I should see "Successfully deleted"
 
 Scenario: Delete a past dojo
+
+Scenario: I must be an editor
