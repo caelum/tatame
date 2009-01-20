@@ -1,9 +1,21 @@
-<ul id="randori">
+<html>
+<h1>Randoris</h1>
 <% if !@randoris.blank? -%>
-  <% for problem in @randoris -%>
-    <li><%=h problem.title %></li>
-  <% end -%>
+  <div id="randori">
+    <ul>
+    <% i = 1 %>
+    <% for randori in @randoris -%>
+      <li>
+        <span id="title"><%=h randori.title %></span>
+        <span id="delete"><%= link_to 'delete', randori, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
+      </li>
+      <% i = i + 1 %>
+    <% end -%>
+    </ul>
+  </div>
 <% else -%>
+  No suggested randoris.
 <% end -%>
-</ul>
 <%= link_to 'New', new_randori_path %>
+<%= link_to 'Back', root_path %>
+</html>

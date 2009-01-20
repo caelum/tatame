@@ -24,4 +24,11 @@ describe RandorisController do
     assigns[:randori].should equal(@randori)
     response.should redirect_to(randoris_path)
   end
+  it "should delete a randori and redirect to the randoris page" do
+    Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
+    @randori.should_receive(:destroy).once
+
+    post 'destroy'
+    response.should redirect_to(randoris_path)
+  end
 end

@@ -13,8 +13,8 @@
 			<%= f.submit 'Add' %>
 		<% end %>
 		
-		<div id="participants">
-			<ul id="presence">
+		<div id="presence">
+			<ul>
 				<% for participant in @dojo.participants %>
 					<li>
 						<span id="name"><%=h participant.name %></span>

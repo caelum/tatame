@@ -2,6 +2,10 @@ Given /I am on the new dojo page/ do
   visit "/dojos/new"
 end
 
+Given /I am on the randoris page/ do
+  visit "/randoris/"
+end
+
 Given /there are (\d+) dojos scheduled starting in ([-]{0,1}\d+) days/ do |n, offset|
   Dojo.transaction do
     Dojo.destroy_all
@@ -17,7 +21,7 @@ Given /^there is no scheduled dojo$/ do
   end
 end
 
-Given /^There are (\d+) randoris suggested with title "(.+)"$/ do |n, title|
+Given /^there are (\d+) randoris suggested with title "(.+)"$/ do |n, title|
   Randori.transaction do
     Randori.destroy_all
     n.to_i.times do
@@ -54,8 +58,10 @@ Then /there should be (\d+) dojos left/ do |n|
 end
 
 Then /^I should see an empty (.+) list$/ do |id|
-  response.should have_tag("ul##{id}") do
-    without_tag("li")
+  response.should have_tag("div##{id}") do
+    with_tag("ul") do
+      without_tag("li")
+    end
   end
 end
 

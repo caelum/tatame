@@ -14,7 +14,7 @@ Scenario: Add a suggestion when there are no suggestions yet
 
 Scenario: Add a suggestion when there is already a suggestion
   Given I am on the root page
-  And There are 1 randoris suggested with title "Rubik's Cube"
+  And there are 1 randoris suggested with title "Rubik's Cube"
   When I follow "Randoris"
   And I follow "New"
   And I fill in "title" with "Maze"
@@ -24,6 +24,11 @@ Scenario: Add a suggestion when there is already a suggestion
   And I should see "Maze"
 
 Scenario: Remove a suggestion when there is only one suggestion
+  Given I am on the randoris page
+  And there are 1 randoris suggested with title "Rubik's Cube"
+  When I follow "delete_1st"
+  Then I should not see "Rubik's Cube"
+  And I should see "No suggested randoris."
 
 Scenario: Remove a suggestion when there are more suggestions
 

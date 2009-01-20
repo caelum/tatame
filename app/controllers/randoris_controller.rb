@@ -11,4 +11,10 @@ class RandorisController < ApplicationController
       redirect_to randoris_path
     end
   end
+  def destroy
+    @randori = Randori.find(params[:id])
+    @randori.destroy
+
+    redirect_to randoris_path
+  end
 end
