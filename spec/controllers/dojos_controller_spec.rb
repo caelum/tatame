@@ -19,7 +19,7 @@ describe DojosController do
   end
   
   it "should save the dojo and redirect to root_url" do
-    Dojo.should_receive(:new).once.and_return(@dojo)
+    Dojo.should_receive(:new).with(params[:dojo]).once.and_return(@dojo)
     @dojo.should_receive(:save).once.and_return(true)
     
     post 'create'
