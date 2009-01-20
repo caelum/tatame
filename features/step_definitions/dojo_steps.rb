@@ -21,15 +21,6 @@ Given /^there is no scheduled dojo$/ do
   end
 end
 
-Given /^there are (\d+) randoris suggested with title "(.+)"$/ do |n, title|
-  Randori.transaction do
-    Randori.destroy_all
-    n.to_i.times do
-      Randori.create! :title => title
-    end
-  end
-end
-
 When /I delete the first dojo/ do
   visit dojos_url
   clicks_link "Destroy"

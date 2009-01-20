@@ -24,8 +24,8 @@ Scenario: Add a suggestion when there is already a suggestion
   And I should see "Maze"
 
 Scenario: Remove a suggestion when there is only one suggestion
-  Given I am on the randoris page
-  And there are 1 randoris suggested with title "Rubik's Cube"
+  Given there are 1 randoris suggested with title "Rubik's Cube"
+  And I am on the randoris page
   When I follow "delete_1st"
   Then I should not see "Rubik's Cube"
   And I should see "No suggested randoris."
