@@ -16,4 +16,12 @@ describe RandorisController do
     get 'index'
     assigns[:randoris].should equal(@randoris)
   end
+  it "should save a randori and redirect to the randoris page" do
+    Randori.should_receive(:new).once.with(params[:randori]).and_return(@randori)
+    @randori.should_receive(:save).once.and_return(true)
+
+    post 'create'
+    assigns[:randori].should equal(@randori)
+    response.should redirect_to(randoris_path)
+  end
 end
