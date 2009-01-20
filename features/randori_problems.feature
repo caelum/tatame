@@ -14,7 +14,7 @@ Scenario: Add a suggestion when there are no suggestions yet
 
 Scenario: Add a suggestion when there is already a suggestion
   Given I am on the root page
-  And There are 1 randori suggested with title "Rubik's Cube"
+  And There are 1 randoris suggested with title "Rubik's Cube"
   When I follow "Randoris"
   And I follow "New"
   And I fill in "title" with "Maze"
