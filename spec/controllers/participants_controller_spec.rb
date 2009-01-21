@@ -8,6 +8,7 @@ describe ParticipantsController do
   it "should save the participant and redirect to root_url" do
     Participant.should_receive(:new).once.and_return(@participant)
     @participant.should_receive(:dojo_id=).once
+    @participant.should_receive(:name).once
     @participant.should_receive(:save).once.and_return(true)
     
     post 'create'
@@ -18,6 +19,7 @@ describe ParticipantsController do
   it "should delete a participant" do
     Participant.should_receive(:find).once.with(params[:id]).and_return(@participant)
     @participant.should_receive(:destroy).once
+    @participant.should_receive(:name)
     
     post 'destroy'
     response.should redirect_to(root_url)
