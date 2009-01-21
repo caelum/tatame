@@ -26,4 +26,7 @@ class RandorisController < ApplicationController
 
     redirect_to randoris_path
   end
+  def show
+    @randori = Randori.find(params[:id])
+  end
 end

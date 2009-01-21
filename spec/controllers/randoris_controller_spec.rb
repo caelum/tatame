@@ -44,4 +44,10 @@ describe RandorisController do
     put 'update'
     response.should redirect_to(randoris_path)
   end
+  it "should show randoris with details" do
+    Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
+
+    get 'show'
+    assigns[:randori].should equal(@randori)
+  end
 end

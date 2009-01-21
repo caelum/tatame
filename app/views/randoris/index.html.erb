@@ -7,6 +7,7 @@
     <% for randori in @randoris -%>
       <li>
         <span id="title"><%=h randori.title %></span>
+        <span id="show"><%= link_to 'show', randori, :id => "show_#{i.ordinalize}" %></span>
         <span id="edit"><%= link_to 'edit', edit_randori_path(randori), :id => "edit_#{i.ordinalize}" %></span>
         <span id="delete"><%= link_to 'delete', randori, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
       </li>

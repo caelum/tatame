@@ -50,3 +50,10 @@ Scenario: Edit a suggestion
   And I should not see "Rubik's Cube"
 
 Scenario: Show a suggestion with details
+  Given there is a randori suggested with title "Rubik's Cube" and description "The famous problem"
+  And there is a randori suggested with title "Large Prime Factorization"
+  And I am on the randoris page
+  When I follow "show_1st"
+  Then I should see "Rubik's Cube"
+  And I should see "The famous problem"
+
