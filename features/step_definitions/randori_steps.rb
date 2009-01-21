@@ -1,8 +1,5 @@
-Given /^there are (\d+) randoris suggested with title "(.+)"$/ do |n, title|
+Given /^there is a randori suggested with title "(.+)"$/ do |title|
   Randori.transaction do
-    Randori.destroy_all
-    n.to_i.times do
-      Randori.create! :title => title
-    end
+    Randori.create! :title => title
   end
 end

@@ -17,4 +17,13 @@ class RandorisController < ApplicationController
 
     redirect_to randoris_path
   end
+  def edit
+    @randori = Randori.find(params[:id])
+  end
+  def update
+    @randori = Randori.find(params[:id])
+    @randori.update_attributes(params[:randori])
+
+    redirect_to randoris_path
+  end
 end

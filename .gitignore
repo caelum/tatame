@@ -6,3 +6,4 @@ db/test.sqlite3
 features_rcov
 coverage
 doc/rspec_results.html
+*.swp

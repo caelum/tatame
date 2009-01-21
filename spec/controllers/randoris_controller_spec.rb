@@ -31,4 +31,17 @@ describe RandorisController do
     post 'destroy'
     response.should redirect_to(randoris_path)
   end
+  it "should edit a randori" do
+    Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
+
+    get 'edit'
+    assigns[:randori].should equal(@randori)
+  end
+  it "should update a randori and redirect to the randoris page" do
+    Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
+    @randori.should_receive(:update_attributes).once.with(params[:randori]).and_return(true)
+
+    put 'update'
+    response.should redirect_to(randoris_path)
+  end
 end
