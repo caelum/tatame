@@ -26,12 +26,12 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "rspec-rails", :lib => "spec/rails"
-  # if failing on osx: 
   config.gem "cucumber"
   config.gem "sqlite3-ruby", :lib => "sqlite3"
   config.gem "aslakhellesoy-webrat", :source => "http://gems.github.com", :lib => "webrat"
   config.gem "spicycode-rcov", :source => "http://gems.github.com", :lib => "rcov"
 
+  # if failing on osx: 
   # sudo gem install mysql -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
   config.gem "mysql"
 
