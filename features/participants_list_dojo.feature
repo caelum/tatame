@@ -2,7 +2,7 @@ Feature: Participants list for next dojo session
   In order to know how many people will come
   As an editor
   I want to have a list where people can mark whether they come or not, without registration
-'  
+  
 Scenario: Add two names
   Given there are 1 dojos scheduled starting in 1 days
   And I am on the root page
@@ -12,7 +12,7 @@ Scenario: Add two names
   And I press "Add"
   Then I should see "Caue"
   And I should see "Pedro"
-  And I should see "Successfully added"
+  And I should see "Successfully added participant Pedro"
 
 Scenario: Add with no name
   Given there are 1 dojos scheduled starting in 1 days
