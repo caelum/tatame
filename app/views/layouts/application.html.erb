@@ -15,9 +15,16 @@
   <div id="hd">
     <h1>Coding Dojo Caelum</h1>
   </div>
+  <div id="menu">
+    <ul>
+      <li><%= link_to 'Dojos', dojos_path %></li>
+      <li><%= link_to 'Randoris', randoris_path %></li>
+    </ul>
+  </div>
   <div id="bd">
     <div class="yui-b">
-      Lista
+      <h2>Confirmados</h2>
+      <%= yield :presence_list %>
     </div>
     <div id="yui-main">
       <div class="yui-b">

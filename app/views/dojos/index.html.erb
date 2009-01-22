@@ -1,32 +1,38 @@
-<h1>Tatame</h1>
-<% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %>
-
 <div id="next">
 	<% if !@dojo.nil? %>
 		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<span id="comment"><%=h @dojo.comment %></span>
 		<span id="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
-		<br/><br/>
-		<% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-			<%= f.submit 'Add' %>
-		<% end %>
 		
-		<div id="presence">
-			<ul>
-				<% for participant in @dojo.participants %>
-					<li>
-						<span id="name"><%=h participant.name %></span>
-						<span id="remove"><%= link_to 'remove', dojo_participant_path(@dojo,participant), :confirm => 'Are you sure?', :method => :delete, :id => "remove_#{participant.name}" %></span>
-					</li>
-				<% end %>
-			</ul>
-		</div>
+		<% content_for :presence_list do %>
+  		<div id="presence">
+  			<ul>
+  				<% for participant in @dojo.participants %>
+  					<li>
+  						<span id="name"><%=h participant.name %></span>
+  						<span id="remove">
+  						  <%= link_to 'remove', dojo_participant_path(@dojo,participant), :confirm => 'Are you sure?', 
+  						              :method => :delete, :id => "remove_#{participant.name}" %>
+  						</span>
+  					</li>
+  				<% end %>
+  			</ul>
+  		</div>
+		<% end %>		
 	<% else %>
 		No scheduled dojos
 	<% end %>
 </div>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.submit 'Add' %>
+<% end %>
 
 <div id="schedule">
 	<ol>
@@ -42,4 +48,3 @@
 </div>
 
 <%= link_to 'New', new_dojo_path %>
-<%= link_to 'Randoris', randoris_path %>
