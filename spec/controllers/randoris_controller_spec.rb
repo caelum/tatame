@@ -58,4 +58,14 @@ describe RandorisController do
     assigns[:randori].should equal(@randori)
     response.should_not redirect_to(randoris_path)
   end
+  
+  it "should return to the edit page when making an invalid edit to an existing randori" do
+    Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
+    @randori.should_receive(:update_attributes).with(params[:randori]).once.and_return(false)
+  
+    put 'update'
+    assigns[:randori].should equal(@randori)
+    response.should_not redirect_to(randoris_path)
+  end
+
 end

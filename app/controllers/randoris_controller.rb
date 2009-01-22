@@ -10,7 +10,6 @@ class RandorisController < ApplicationController
     if @randori.save
       redirect_to randoris_path
     else
-      flash[:notice] = 'The title cannot be empty.'
       render :action => :new
     end
   end
@@ -25,9 +24,11 @@ class RandorisController < ApplicationController
   end
   def update
     @randori = Randori.find(params[:id])
-    @randori.update_attributes(params[:randori])
-
-    redirect_to randoris_path
+    if @randori.update_attributes(params[:randori])
+      redirect_to randoris_path
+    else
+      render :action => :edit
+    end
   end
   def show
     @randori = Randori.find(params[:id])

@@ -1,3 +1,5 @@
+<%= error_messages_for :randori %>
+
 <% form_for @randori, :url => {:action => :update, :id => @randori} do |f| -%>
   <%= f.label :title %><br/>
   <%= f.text_field :title %><br/>

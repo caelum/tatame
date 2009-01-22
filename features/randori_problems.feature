@@ -63,3 +63,10 @@ Scenario: Create a suggestion without title
   And I press "Add"
   Then I should see "Title can't be blank"
 
+Scenario: Remove the title of an existing suggestion
+  Given there is a randori suggested with title "Rubik's Cube"
+  And I am on the randoris page
+  When I follow "edit_1st"
+  And I fill in "title" with ""
+  And I press "Save"
+  Then I should see "Title can't be blank"
