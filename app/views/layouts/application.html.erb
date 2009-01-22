@@ -11,9 +11,23 @@
 </head>
 
 <body>
-<div id="doc">
-  <%= yield %>  
+<div id="doc" class="yui-t2">
+  <div id="hd">
+    <h1>Coding Dojo Caelum</h1>
+  </div>
+  <div id="bd">
+    <div class="yui-b">
+      Lista
+    </div>
+    <div id="yui-main">
+      <div class="yui-b">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  <div id="ft">
+    Copyleft Caelum
+  </div>
 </div>
-
 </body>
 </html>

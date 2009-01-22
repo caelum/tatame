@@ -1,0 +1,16 @@
+* {
+  font-family: Tahoma, "MS Trebuchet", Arial, sans-serif;
+}
+
+#hd {
+  background: transparent url("../images/tatame.jpg") no-repeat top center;
+  height: 170px;
+}
+
+#hd h1 {
+  text-indent: -1000px;  
+}
+
+#bd {
+  padding-top: 20px;
+}
