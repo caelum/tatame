@@ -13,7 +13,6 @@ describe Dojo do
   before(:each) do
     @date = mock_model(Time)
     @dojo = mock_model(Dojo)
-    @int = mock_model(Integer)
     @dojo.stub!(:date).and_return(@date)
     @date.stub!(:+).and_return(@date)
     @date.stub!(:-).with(7.days).and_return(@date)
@@ -23,11 +22,11 @@ describe Dojo do
   end
   
   it "should say the new date when there is no dojo yet" do
-    @date.stub!(:year).and_return(@int)
-    @date.stub!(:month).and_return(@int)
-    @date.stub!(:day).and_return(@int)
+    @date.stub!(:year).and_return(2009)
+    @date.stub!(:month).and_return(01)
+    @date.stub!(:day).and_return(22)
     Time.stub!(:gm).and_return(@date)
-    Dojo.should_receive(:find) do |args|
+    Dojo.should_receive(:find) do |*args|
       options = args.shift
       options.should_not be_nil
       options.should == :first
@@ -45,11 +44,11 @@ describe Dojo do
     end
     date = Time.gm(Time.now.year, Time.now.month, Time.now.day, 19, 0)
     
-    Dojo.next_date.should equal (date + 7.days)
+    Dojo.next_date.should equal(date + 7.days)
   end
   
   it "should say the new date when there is a dojo created recently" do
-    Dojo.should_receive(:find) do |args|
+    Dojo.should_receive(:find) do |*args|
       options = args.pop
       options.should_not be_nil
       options.should be_kind_of(Hash)
@@ -65,7 +64,7 @@ describe Dojo do
     
     @dojo.should_receive(:date).and_return(date)
     
-    Dojo.next_date.should equal (date + 7.days)
+    Dojo.next_date.should equal(date + 7.days)
   end
   
   it "should be valid" do
