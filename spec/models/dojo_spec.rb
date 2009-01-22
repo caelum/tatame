@@ -44,7 +44,7 @@ describe Dojo do
     end
     date = Time.gm(Time.now.year, Time.now.month, Time.now.day, 19, 0)
     
-    Dojo.next_date.should equal(date + 7.days)
+    Dojo.next_date.should == date + 7.days
   end
   
   it "should say the new date when there is a dojo created recently" do
