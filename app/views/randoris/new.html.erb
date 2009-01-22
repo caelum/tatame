@@ -1,4 +1,7 @@
 <h2>New Randori</h2>
+
+<%= error_messages_for :randori %>
+
 <% form_for @randori do |f| %>
   <%= f.label :title %><br/>
   <%= f.text_field :title %><br/>

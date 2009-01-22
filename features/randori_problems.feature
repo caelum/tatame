@@ -57,3 +57,9 @@ Scenario: Show a suggestion with details
   Then I should see "Rubik's Cube"
   And I should see "The famous problem"
 
+Scenario: Create a suggestion without title
+  Given I am on the randoris page
+  When I follow "new"
+  And I press "Add"
+  Then I should see "Title can't be blank"
+

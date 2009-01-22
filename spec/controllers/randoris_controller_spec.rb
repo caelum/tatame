@@ -50,4 +50,12 @@ describe RandorisController do
     get 'show'
     assigns[:randori].should equal(@randori)
   end
+  it "should return to the new page when creating an invalid randori" do
+    Randori.should_receive(:new).once.with(params[:randori]).and_return(@randori)
+    @randori.should_receive(:save).once.and_return(false)
+
+    post 'create'
+    assigns[:randori].should equal(@randori)
+    response.should_not redirect_to(randoris_path)
+  end
 end
