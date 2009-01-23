@@ -1,5 +1,5 @@
 <div id="next">
-	<% if !@dojo.nil? %>
+	<% unless @dojo.nil? %>
 		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<p id="comment"><%=h @dojo.comment %></p>
 		<span id="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
