@@ -3,7 +3,7 @@ body {
 }
 
 #hd {
-  background: transparent url("../images/tatame.jpg") no-repeat top center;
+  background: transparent url("../images/tatame.png") no-repeat top center;
   height: 170px;
 }
 
@@ -13,4 +13,62 @@ body {
 
 #bd {
   padding-top: 20px;
+}
+
+.presence-list h2 {
+  text-indent: -1000px;
+  background: transparent url("../images/confirmados.png") no-repeat top 20px;
+  height: 51px;
+}
+
+.confirmation {
+  background: #ffedb7 url("../images/box-amarelo_direito.png") no-repeat top right;
+  height: 173px;
+}
+
+.confirmation h2 {
+  text-indent: -1000px;
+  background: transparent url("../images/confirmesuapresenca.png") no-repeat top left;
+  height: 54px;
+  margin: 0;
+}
+
+.confirmation form {
+  padding: 20px 30px 20px 30px;
+  background: transparent url("../images/box-amarelo_esquerdo.png") no-repeat top left;
+  height: 173px;
+}
+
+.confirmation form input.nome {
+  width: 200px;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  display: block;
+  float: left;
+  margin: 17px 0 0 20px;
+}
+
+.confirmation form input.botao {
+  display: block;
+  float: left;
+  padding: 0 0 0 20px;
+}
+
+#next h2 {
+  text-indent: -1000px;
+  background: transparent url("../images/proximodojo.png") no-repeat top left;
+  height: 42px;
+  float: left;
+  width: 218px;
+}
+
+#next p {
+  clear: both;
+}
+
+#next span.date {
+  font-size: 1.8em;
+  padding-top: 7px;
+  display: block;
 }
