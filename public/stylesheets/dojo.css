@@ -15,14 +15,27 @@ body {
   padding-top: 20px;
 }
 
+.presence-list {
+  background: transparent url("../images/logo-caelum.png") no-repeat 25px 7px;
+  padding: 120px 0 0 0;
+}
+
+.presence-list ul {
+  font-size: 22px;
+  color: #a62722;
+  padding: 20px 20px 0 40px;
+}
+
 .presence-list h2 {
   text-indent: -1000px;
-  background: transparent url("../images/confirmados.png") no-repeat top 20px;
+  background: transparent url("../images/confirmados.png") no-repeat top left;
   height: 51px;
+  margin: 0 0 0 40px;
 }
 
 .confirmation {
-  background: #ffedb7 url("../images/box-amarelo_direito.png") no-repeat top right;
+  margin: 10px 0 0 0;
+  background: transparent url("../images/box-amarelo_direito.png") no-repeat top right;
   height: 173px;
 }
 
@@ -30,23 +43,31 @@ body {
   text-indent: -1000px;
   background: transparent url("../images/confirmesuapresenca.png") no-repeat top left;
   height: 54px;
-  margin: 0;
+  margin: 0 0 0 8px;
 }
 
 .confirmation form {
-  padding: 20px 30px 20px 30px;
+  padding: 13px 30px 20px 30px;
   background: transparent url("../images/box-amarelo_esquerdo.png") no-repeat top left;
   height: 173px;
 }
 
-.confirmation form input.nome {
-  width: 200px;
-  border: none;
-  font-size: 24px;
-  padding: 10px;
+.confirmation form span.field {
+  background: transparent url("../images/espaconome.png") no-repeat top left;
+  padding: 1px 12px 0 12px;
   display: block;
   float: left;
-  margin: 17px 0 0 20px;
+  margin: 15px 0 0 20px;
+}
+
+.confirmation form input.nome {
+  width: 227px;
+  padding: 8px 0 8px 0;
+  border: none;
+  font-size: 22px;
+  display: block;
+  margin: 0;
+  color: #eaeaea;
 }
 
 .confirmation form input.botao {

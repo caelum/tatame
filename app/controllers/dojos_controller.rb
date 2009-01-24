@@ -2,7 +2,7 @@ class DojosController < ApplicationController
   def index
     @dojos = Dojo.find(:all, :conditions => ["date > ?", Time.now], :order => "date ASC")
     @dojo = @dojos.shift
-    @participant = Participant.new unless @dojo.nil?
+    @participant = Participant.new
   end
   
   def new

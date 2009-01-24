@@ -29,8 +29,10 @@
 
 <div class="confirmation">
   <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
-    <h2>Confirme sua presen&ccedil;</h2>
-  	<%= f.text_field :name, :class => 'nome' %>
+    <h2>Confirme sua presen&ccedil;a</h2>
+    <span class="field">
+    	<%= f.text_field :name, :class => 'nome' %>
+  	</span>
   	<%= image_submit_tag 'botao-ok.png', :class => 'botao' %>
   <% end %>
 </div>

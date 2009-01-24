@@ -3,4 +3,6 @@ class Participant < ActiveRecord::Base
   
   validates_presence_of :name
   validates_numericality_of :dojo_id
+  
+  default_value_for :name, 'Nome'
 end
