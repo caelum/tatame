@@ -13,6 +13,12 @@ Scenario: Register an user
   And there should exist an user with email "my@email.com"
 
 Scenario: Try to register an invalid user
+  Given I am on the root page
+  When I follow "Register"
+  And I fill in "email" with ""
+  And I fill in "password" with "pass"
+  And I press "Register"
+  Then I should see "Email can't be blank"
 
 Scenario: Try to register an user that already exists
 

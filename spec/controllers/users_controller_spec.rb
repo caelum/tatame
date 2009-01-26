@@ -12,7 +12,7 @@ describe UsersController do
     get 'new'
     assigns[:user].should == @user
   end
-  it "should save a created user" do
+  it "should save a valid user" do
     User.should_receive(:new).once.with(params[:user]).and_return(@user)
     @user.should_receive(:save).once.and_return(true)
 
@@ -21,4 +21,12 @@ describe UsersController do
     response.should redirect_to(root_path)
     flash[:notice].should == "Welcome, #{@user.email}"
   end
+  it "should not save an invalid user" do
+    User.should_receive(:new).once.with(params[:user]).and_return(@user)
+    @user.should_receive(:save).once.and_return(false)
+
+    post 'create'
+    assigns[:user].should == @user
+    response.should_not redirect_to(root_path)
+ end
 end
