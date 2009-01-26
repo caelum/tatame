@@ -60,7 +60,7 @@ body {
   margin: 15px 0 0 20px;
 }
 
-.confirmation form input.nome {
+.confirmation form input.name {
   width: 227px;
   padding: 8px 0 8px 0;
   border: none;
@@ -70,7 +70,7 @@ body {
   color: #eaeaea;
 }
 
-.confirmation form input.botao {
+.confirmation form input.button {
   display: block;
   float: left;
   padding: 0 0 0 20px;
