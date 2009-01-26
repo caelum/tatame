@@ -1,8 +1,8 @@
 <div id="next">
 	<% unless @dojo.nil? %>
 	  <h2>Próximo Dojo: </h2>
-		<span class="date"><%=h show_date(@dojo.date) %></span>
-		<p class="comment"><%=h @dojo.comment %></p>
+		<span class="date" id="date"><%=h show_date(@dojo.date) %></span>
+		<p class="comment" id="comment"><%=h @dojo.comment %></p>
 		<span class="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
 		
 		<% content_for :presence_list do %>

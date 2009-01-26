@@ -59,13 +59,14 @@ end
 Then /^the next dojo should be in (\d+) days$/ do |n|
   response.should have_tag("div#next") do
     date = (today + n.to_i.days).strftime("%Y-%m-%d - %H:%M")
-    with_tag("span#date", "#{date}")
+    with_tag("div#next") do
+      with_tag("span#date", "#{date}")    end
   end
 end
 
 Then /^the next dojo (\w+) should be "(.*)"$/ do |id, item|
   response.should have_tag("div") do
-    with_tag("span##{id}", "#{item}")
+    with_tag("p##{id}", "#{item}") or with_tag("span##{id}", "#{item}")
   end
 end
 

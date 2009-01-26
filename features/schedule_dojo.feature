@@ -8,13 +8,13 @@ Feature: Schedule a dojo session
 Scenario: Create first dojo
   Given I am on the root page
   When I follow "New"
-	And I select 1 days from now as the date and time
-	And I fill in "comment" with "A comment"
+  And I select 1 days from now as the date and time
+  And I fill in "comment" with "A comment"
   And I press "Create"
-	Then the next dojo should be in 1 days
-	And the next dojo comment should be "A comment"
+  Then the next dojo should be in 1 days
+  And the next dojo comment should be "A comment"
   And I should see an empty presence list
-	And I should see "Successfully created"
+  And I should see "Successfully created"
 
 Scenario: Create next dojos
   Given I am on the new dojo page
