@@ -21,6 +21,7 @@ describe Participant do
   
   it "should require name" do
     @participant.attributes = valid_participant_attributes.except(:name)
+    @participant.name = ''
     @participant.should_not be_valid
     @participant.errors.on(:name).should include("can't be blank")
     @participant.name = "caue"
