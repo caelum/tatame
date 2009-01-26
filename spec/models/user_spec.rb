@@ -29,4 +29,12 @@ describe User do
     @user.should_not be_valid
     @user.errors.on(:email).should include("can't be blank")
   end
+  it "should not allow two users with the same email" do
+    another_user = User.new
+    @user.attributes = valid_user_attributes
+    another_user.attributes = valid_user_attributes
+    @user.save
+    another_user.should_not be_valid
+    another_user.errors.on(:email).should include("user already registered with this email")
+  end
 end

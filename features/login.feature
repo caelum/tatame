@@ -16,11 +16,19 @@ Scenario: Try to register an invalid user
   Given I am on the root page
   When I follow "Register"
   And I fill in "email" with ""
-  And I fill in "password" with "pass"
+  And I fill in "password" with ""
   And I press "Register"
   Then I should see "Email can't be blank"
+  And I should see "Password can't be blank"
 
 Scenario: Try to register an user that already exists
+  Given I am on the root page
+  And there is an user registered as "my@email.com"
+  When I follow "Register"
+  And I fill in "email" with "my@email.com"
+  And I fill in "password" with "password"
+  And I press "Register"
+  Then I should see "There is an user already registered with this email"
 
 Scenario: Login as an registered user
 
