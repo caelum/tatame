@@ -1,5 +1,3 @@
 class User < ActiveRecord::Base
-  validates_presence_of :email
-  validates_uniqueness_of :email, :on => :create, :message => "There is an user already registered with this email"
-  validates_presence_of :password
+  acts_as_authentic :login_field_validates_uniqueness_of_options => {:message => 'There is an user already registered with this email'}
 end
