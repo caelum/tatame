@@ -1,15 +1,15 @@
 <% unless @randoris.blank? -%>
-  <% @randoris.each do |randori| -%>
+  <% @randoris.each_with_index do |randori, i| -%>
     <div class="randori">
       <h2><%=h randori.title %></h2>
       <p>
         <%= randori.description %>
       </p>
-      <span id="edit">
-        <%= link_to 'Alterar', edit_randori_path(randori), :id => "edit_#{randori.id}" %>
+      <span class="edit">
+        <%= link_to 'Alterar', edit_randori_path(randori), :id => "edit_#{(i+1).ordinalize}" %>
       </span> | 
-      <span id="delete">
-        <%= link_to 'Remover', randori, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{randori.id}" %>
+      <span class="delete">
+        <%= link_to 'Remover', randori, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{(i+1).ordinalize}" %>
       </span>
     </div>
   <% end -%>
