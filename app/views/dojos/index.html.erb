@@ -1,9 +1,15 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <div id="next">
 	<% unless @dojo.nil? %>
 	  <h2>Próximo Dojo: </h2>
-		<span class="date" id="date"><%=h show_date(@dojo.date) %></span>
-		<p class="comment" id="comment"><%=h @dojo.comment %></p>
-		<span class="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
+		<span id="date"><%=h show_date(@dojo.date) %></span>
+		<p id="comment">
+		  <%=h @dojo.comment %>
+  		<span class="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
+		</p>
 		
 		<% content_for :presence_list do %>
 			<div id="presence">
@@ -25,31 +31,29 @@
 	<% end %>
 </div>
 
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+<% content_for :schedule do %>
+  <div id="schedule">
+  	<ul>
+  		<% i = 1 %>
+  		<% for dojo in @dojos %>
+  				<li>
+  					<span id="date"><%=h show_date(dojo.date) %></span>
+  					<span id="delete"><%= link_to 'delete', dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
+  				</li>
+  				<% i = i + 1 %>
+  		<% end %>
+  	</ul>
+  </div>
 <% end %>
 
 <div class="confirmation">
   <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
     <h2>Confirme sua presen&ccedil;a</h2>
     <span class="field">
-    	<%= f.text_field :name, :class => 'name' %>
+    	<%= f.text_field :name, :class => 'name', :tabindex => 0 %>
   	</span>
   	<%= image_submit_tag 'botao-ok.png', :id => "add_participant" , :class => 'button' %>
   <% end %>
-</div>
-
-<div id="schedule">
-	<ol>
-		<% i = 1 %>
-		<% for dojo in @dojos %>
-				<li>
-					<span id="date"><%=h show_date(dojo.date) %></span>
-					<span id="delete"><%= link_to 'delete', dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
-				</li>
-				<% i = i + 1 %>
-		<% end %>
-	</ol>
 </div>
 
 <%= link_to 'New', new_dojo_path %>

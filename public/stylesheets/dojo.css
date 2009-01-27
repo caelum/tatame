@@ -22,7 +22,7 @@ body {
 }
 
 #menu li a {
-  font-size: 16px;
+  font-size: 1.2em;
   text-transform: uppercase;
   font-weight: bold;
   color: #fff;
@@ -44,22 +44,41 @@ body {
   padding-top: 20px;
 }
 
+.notice {
+  background-color: #ffebd7;
+  color: #a62622;
+  font-size: 1.4em;
+  padding: 10px 20px 10px 20px;
+  margin: 0 0 30px 0;
+}
+
 .presence-list {
-  background: transparent url("../images/logo-caelum.png") no-repeat 25px 7px;
+  background: transparent url("../images/logo-caelum.png") no-repeat 25px 0px;
   padding: 110px 0 0 0;
 }
 
 .presence-list ul {
-  font-size: 22px;
+  font-size: 1.7em;
   color: #a62622;
   padding: 20px 20px 0 40px;
+}
+
+#schedule ul {
+  font-size: 1.5em;
 }
 
 .presence-list h2 {
   text-indent: -1000px;
   background: transparent url("../images/confirmados.png") no-repeat top left;
-  height: 51px;
+  height: 40px;
   margin: 0 0 0 40px;
+}
+
+.presence-list h2.next {
+  text-indent: -1000px;
+  background: transparent url("../images/proximas-datas.png") no-repeat top left;
+  height: 30px;
+  margin: 40px 0 0 40px;
 }
 
 .confirmation {
@@ -90,13 +109,14 @@ body {
 }
 
 .confirmation form input.name {
+  font-family: Tahoma, "MS Trebuchet", Arial, helvetica, sans-serif;
   width: 227px;
-  padding: 8px 0 8px 0;
+  padding: 3px 0 4px 0;
   border: none;
-  font-size: 22px;
+  font-size: 2.2em;
   display: block;
   margin: 0;
-  color: #eaeaea;
+  color: #ddd;
 }
 
 .confirmation form input.button {
@@ -113,13 +133,17 @@ body {
   width: 218px;
 }
 
-#next p {
+#next p#comment {
   clear: both;
-  padding: 5px;
+  padding: 3px 5px 5px 5px;
 }
 
-#next span.date {
-  font-size: 1.8em;
-  padding-top: 7px;
+#next span#date {
+  font-size: 1.4em;
+  padding-top: 9px;
   display: block;
+}
+
+#next span.delete {
+  display: inline;
 }
