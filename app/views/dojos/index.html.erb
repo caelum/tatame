@@ -60,7 +60,6 @@
 <%= link_to 'Register', new_user_path %>
 
 <script type="text/javascript" charset="utf-8">
-  
   $('participant_name').observe('focus', function(event) {
     var element = Event.element(event);
     if(element.getValue() == 'Nome' || element.getValue().blank()) {
