@@ -57,13 +57,13 @@ body {
   padding: 110px 0 0 0;
 }
 
-.presence-list ul {
+.presence-list ul, .presence-list ol {
   font-size: 1.7em;
   color: #a62622;
   padding: 20px 20px 0 40px;
 }
 
-#schedule ul {
+#schedule ol {
   font-size: 1.5em;
 }
 
