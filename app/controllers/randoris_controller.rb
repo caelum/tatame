@@ -1,4 +1,6 @@
 class RandorisController < ApplicationController
+  layout 'simple'
+  
   def index
     @randoris = Randori.find(:all)
   end

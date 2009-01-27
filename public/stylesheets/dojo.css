@@ -2,6 +2,10 @@ body {
   font-family: Tahoma, "MS Trebuchet", Arial, helvetica, sans-serif;
 }
 
+#doc.simple {
+  background: transparent url("../images/dojo-fundo.png") no-repeat fixed 120px 190px;
+}
+
 #hd {
   background: transparent url("../images/tatame.png") no-repeat top center;
   height: 170px;
@@ -146,4 +150,21 @@ body {
 
 #next span.delete {
   display: inline;
+}
+
+.randori h2 {
+  color: #a62622;
+  display: block;
+  font-size: 2.5em;
+  padding: 10px 0 15px 0;
+}
+
+.randori {
+  padding-bottom: 10px;
+}
+
+.randori p {
+  font-size: 1.1em;
+  padding-right: 270px;
+  text-align: justify;
 }

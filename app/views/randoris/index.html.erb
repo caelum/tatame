@@ -1,21 +1,22 @@
-<h1>Randoris</h1>
-<% if !@randoris.blank? -%>
-  <div id="randori">
-    <ul>
-    <% i = 1 %>
-    <% for randori in @randoris -%>
-      <li>
-        <span id="title"><%=h randori.title %></span>
-        <span id="show"><%= link_to 'show', randori, :id => "show_#{i.ordinalize}" %></span>
-        <span id="edit"><%= link_to 'edit', edit_randori_path(randori), :id => "edit_#{i.ordinalize}" %></span>
-        <span id="delete"><%= link_to 'delete', randori, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
-      </li>
-      <% i = i + 1 %>
-    <% end -%>
-    </ul>
-  </div>
+<% unless @randoris.blank? -%>
+  <% @randoris.each do |randori| -%>
+    <div class="randori">
+      <h2><%=h randori.title %></h2>
+      <p>
+        <%= randori.description %>
+      </p>
+      <span id="edit">
+        <%= link_to 'Alterar', edit_randori_path(randori), :id => "edit_#{randori.id}" %>
+      </span> | 
+      <span id="delete">
+        <%= link_to 'Remover', randori, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{randori.id}" %>
+      </span>
+    </div>
+  <% end -%>
 <% else -%>
   No suggested randoris.
 <% end -%>
-<%= link_to 'New', new_randori_path %>
-<%= link_to 'Back', root_path %>
+
+<p>
+  <%= link_to 'New', new_randori_path %>
+</p>
