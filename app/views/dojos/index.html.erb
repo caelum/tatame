@@ -8,13 +8,14 @@
 		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<p id="comment">
 		  <%=h @dojo.comment %>
+		  <%= link_to image_tag('cross.png'), @dojo, :confirm => 'Are you sure?', 
+		              :method => :delete, :id => "delete_next" %>
 		</p>
-		<span class="delete"><%= link_to 'remover', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
 		
 		<% content_for :presence_list do -%>
 			<div id="presence">
 			<ul>
-				<% @dojo.participants.each |participant| -%>
+				<% @dojo.participants.each do |participant| -%>
 					<li>
 						<span id="name"><%=h participant.name %></span>
 						<%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
