@@ -8,8 +8,8 @@
 		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<p id="comment">
 		  <%=h @dojo.comment %>
-  		<span class="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
 		</p>
+		<span class="delete"><%= link_to 'Remover', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
 		
 		<% content_for :presence_list do %>
 			<div id="presence">
