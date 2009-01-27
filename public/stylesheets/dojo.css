@@ -6,6 +6,11 @@ body {
   background: transparent url("../images/dojo-fundo.png") no-repeat fixed 120px 190px;
 }
 
+#doc.simple #bd {
+  background: transparent url("../images/logo-caelum.png") no-repeat scroll bottom left;
+  padding-bottom: 120px;
+}
+
 #hd {
   background: transparent url("../images/tatame.png") no-repeat top center;
   height: 170px;
@@ -165,6 +170,6 @@ body {
 
 .randori p {
   font-size: 1.1em;
-  padding-right: 270px;
+  padding-right: 260px;
   text-align: justify;
 }

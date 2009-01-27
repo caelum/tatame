@@ -32,7 +32,4 @@ class RandorisController < ApplicationController
       render :action => :edit
     end
   end
-  def show
-    @randori = Randori.find(params[:id])
-  end
 end
