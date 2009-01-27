@@ -50,7 +50,7 @@
   <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
     <h2>Confirme sua presen&ccedil;a</h2>
     <span class="field">
-    	<%= f.text_field :name, :class => 'name', :tabindex => 0 %>
+    	<%= f.text_field :name, :class => 'name' %>
   	</span>
   	<%= image_submit_tag 'botao-ok.png', :id => "add_participant" , :class => 'button' %>
   <% end %>
@@ -58,3 +58,24 @@
 
 <%= link_to 'New', new_dojo_path %>
 <%= link_to 'Register', new_user_path %>
+
+<script type="text/javascript" charset="utf-8">
+  
+  $('participant_name').observe('focus', function(event) {
+    var element = Event.element(event);
+    if(element.getValue() == 'Nome' || element.getValue().blank()) {
+      element.value = ''
+      element.addClassName('active');
+    }
+  });
+  
+  $('participant_name').observe('blur', function(event) {
+    var element = Event.element(event);
+    // alert(element.getValue() + ": " + element.getValue().empty());
+    // alert(element.getValue() == 'Nome' || element.getValue().empty())
+    if(element.getValue().blank()) {
+      element.value = 'Nome'
+      element.removeClassName('active');
+    }
+  });
+</script>
