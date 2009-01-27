@@ -9,7 +9,7 @@
 		<p id="comment">
 		  <%=h @dojo.comment %>
 		</p>
-		<span class="delete"><%= link_to 'Remover', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
+		<span class="delete"><%= link_to 'remover', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
 		
 		<% content_for :presence_list do %>
 			<div id="presence">
