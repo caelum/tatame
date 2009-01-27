@@ -11,18 +11,47 @@ body {
   text-indent: -1000px;  
 }
 
+#menu {
+  padding: 0 0 50px 0;
+}
+
+#menu li {
+  float: right;
+  background: transparent url("../images/aba_ladodireito.png") no-repeat top right;
+  margin-left: 10px;
+}
+
+#menu li a {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 1px 18px 5px 18px;
+  background: transparent url("../images/aba_ladoesquerdo.png") no-repeat top left;  
+}
+
+#menu li a.current {
+  color: #ffedb7;
+}
+
+#menu li a:hover {
+  color: #ffedb7;
+}
+
 #bd {
   padding-top: 20px;
 }
 
 .presence-list {
   background: transparent url("../images/logo-caelum.png") no-repeat 25px 7px;
-  padding: 120px 0 0 0;
+  padding: 110px 0 0 0;
 }
 
 .presence-list ul {
   font-size: 22px;
-  color: #a62722;
+  color: #a62622;
   padding: 20px 20px 0 40px;
 }
 
@@ -86,6 +115,7 @@ body {
 
 #next p {
   clear: both;
+  padding: 5px;
 }
 
 #next span.date {
