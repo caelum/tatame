@@ -14,7 +14,7 @@
 		<% content_for :presence_list do -%>
 			<div id="presence">
 			<ul>
-				<% for participant in @dojo.participants -%>
+				<% @dojo.participants.each |participant| -%>
 					<li>
 						<span id="name"><%=h participant.name %></span>
 						<%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
