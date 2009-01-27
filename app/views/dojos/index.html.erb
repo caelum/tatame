@@ -1,33 +1,50 @@
+<% if flash[:notice] -%>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end -%>
+
 <div id="next">
-	<% unless @dojo.nil? %>
+	<% unless @dojo.nil? -%>
 	  <h2>Próximo Dojo: </h2>
-		<span class="date" id="date"><%=h show_date(@dojo.date) %></span>
-		<p class="comment" id="comment"><%=h @dojo.comment %></p>
-		<span class="delete"><%= link_to 'delete', @dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_next" %></span>
+		<span id="date"><%=h show_date(@dojo.date) %></span>
+		<p id="comment">
+		  <%=h @dojo.comment %>
+		  <%= link_to image_tag('cross.png'), @dojo, :confirm => 'Are you sure?', 
+		              :method => :delete, :id => "delete_next" %>
+		</p>
 		
-		<% content_for :presence_list do %>
+		<% content_for :presence_list do -%>
 			<div id="presence">
 			<ul>
-				<% for participant in @dojo.participants %>
+				<% @dojo.participants.each do |participant| -%>
 					<li>
 						<span id="name"><%=h participant.name %></span>
-						<span id="remove">
-						  <%= link_to 'remove', dojo_participant_path(@dojo,participant), :confirm => 'Are you sure?', 
-						              :method => :delete, :id => "remove_#{participant.name}" %>
-						</span>
+						<%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
+						            :confirm => 'Are you sure?', :method => :delete, 
+						            :id => "remove_#{participant.name}" %>
 					</li>
-				<% end %>
+				<% end -%>
 			</ul>
 			</div>
-		<% end %>		
-	<% else %>
+		<% end -%>		
+	<% else -%>
 		No scheduled dojos
-	<% end %>
+	<% end -%>
 </div>
 
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-<% end %>
+<% content_for :schedule do -%>
+  <div id="schedule">
+  	<ol>
+  		<% i = 1 -%>
+  		<% for dojo in @dojos -%>
+  				<li>
+  					<span id="date"><%=h show_date(dojo.date) %></span>
+  					<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
+  				</li>
+  				<% i = i + 1 %>
+  		<% end -%>
+  	</ol>
+  </div>
+<% end -%>
 
 <div class="confirmation">
   <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
@@ -39,18 +56,25 @@
   <% end %>
 </div>
 
-<div id="schedule">
-	<ol>
-		<% i = 1 %>
-		<% for dojo in @dojos %>
-				<li>
-					<span id="date"><%=h show_date(dojo.date) %></span>
-					<span id="delete"><%= link_to 'delete', dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
-				</li>
-				<% i = i + 1 %>
-		<% end %>
-	</ol>
-</div>
-
 <%= link_to 'New', new_dojo_path %>
 <%= link_to 'Register', new_user_path %>
+
+<script type="text/javascript" charset="utf-8">
+  $('participant_name').observe('focus', function(event) {
+    var element = Event.element(event);
+    if(element.getValue() == 'Nome' || element.getValue().blank()) {
+      element.value = ''
+      element.addClassName('active');
+    }
+  });
+  
+  $('participant_name').observe('blur', function(event) {
+    var element = Event.element(event);
+    // alert(element.getValue() + ": " + element.getValue().empty());
+    // alert(element.getValue() == 'Nome' || element.getValue().empty())
+    if(element.getValue().blank()) {
+      element.removeClassName('active');
+      element.value = 'Nome'
+    }
+  });
+</script>

@@ -2,6 +2,15 @@ body {
   font-family: Tahoma, "MS Trebuchet", Arial, helvetica, sans-serif;
 }
 
+#doc.simple {
+  background: transparent url("../images/dojo-fundo.png") no-repeat fixed 120px 190px;
+}
+
+#doc.simple #bd {
+  background: transparent url("../images/logo-caelum.png") no-repeat scroll bottom left;
+  padding-bottom: 120px;
+}
+
 #hd {
   background: transparent url("../images/tatame.png") no-repeat top center;
   height: 170px;
@@ -11,26 +20,74 @@ body {
   text-indent: -1000px;  
 }
 
+#menu {
+  padding: 0 0 50px 0;
+}
+
+#menu li {
+  float: right;
+  background: transparent url("../images/aba_ladodireito.png") no-repeat top right;
+  margin-left: 10px;
+}
+
+#menu li a {
+  font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 1px 18px 5px 18px;
+  background: transparent url("../images/aba_ladoesquerdo.png") no-repeat top left;  
+}
+
+#menu li a.current {
+  color: #ffedb7;
+}
+
+#menu li a:hover {
+  color: #ffedb7;
+}
+
 #bd {
   padding-top: 20px;
 }
 
-.presence-list {
-  background: transparent url("../images/logo-caelum.png") no-repeat 25px 7px;
-  padding: 120px 0 0 0;
+.notice {
+  background-color: #ffebd7;
+  color: #a62622;
+  font-size: 1.4em;
+  padding: 10px 20px 10px 20px;
+  margin: 0 0 30px 0;
 }
 
-.presence-list ul {
-  font-size: 22px;
-  color: #a62722;
+.presence-list {
+  background: transparent url("../images/logo-caelum.png") no-repeat 25px 0px;
+  padding: 110px 0 0 0;
+}
+
+.presence-list ul, .presence-list ol {
+  font-size: 1.7em;
+  color: #a62622;
   padding: 20px 20px 0 40px;
+}
+
+#schedule ol {
+  font-size: 1.5em;
 }
 
 .presence-list h2 {
   text-indent: -1000px;
   background: transparent url("../images/confirmados.png") no-repeat top left;
-  height: 51px;
+  height: 40px;
   margin: 0 0 0 40px;
+}
+
+.presence-list h2.next {
+  text-indent: -1000px;
+  background: transparent url("../images/proximas-datas.png") no-repeat top left;
+  height: 30px;
+  margin: 40px 0 0 40px;
 }
 
 .confirmation {
@@ -61,13 +118,18 @@ body {
 }
 
 .confirmation form input.name {
+  font-family: Tahoma, "MS Trebuchet", Arial, helvetica, sans-serif;
   width: 227px;
-  padding: 8px 0 8px 0;
+  padding: 3px 0 4px 0;
   border: none;
-  font-size: 22px;
+  font-size: 2.2em;
   display: block;
   margin: 0;
-  color: #eaeaea;
+  color: #ddd;
+}
+
+.confirmation form input.name.active {
+  color: #000;
 }
 
 .confirmation form input.button {
@@ -84,12 +146,34 @@ body {
   width: 218px;
 }
 
-#next p {
+#next p#comment {
   clear: both;
+  padding: 3px 5px 5px 5px;
 }
 
-#next span.date {
-  font-size: 1.8em;
-  padding-top: 7px;
+#next span#date {
+  font-size: 1.4em;
+  padding-top: 9px;
   display: block;
+}
+
+#next span.delete {
+  display: inline;
+}
+
+.randori h2 {
+  color: #a62622;
+  display: block;
+  font-size: 2.5em;
+  padding: 10px 0 15px 0;
+}
+
+.randori {
+  padding-bottom: 10px;
+}
+
+.randori p {
+  font-size: 1.1em;
+  padding-right: 260px;
+  text-align: justify;
 }

@@ -1,4 +1,6 @@
 class RandorisController < ApplicationController
+  layout 'simple'
+  
   def index
     @randoris = Randori.find(:all)
   end
@@ -29,8 +31,5 @@ class RandorisController < ApplicationController
     else
       render :action => :edit
     end
-  end
-  def show
-    @randori = Randori.find(params[:id])
   end
 end

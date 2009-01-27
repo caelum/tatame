@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
     dojo.resources :participants, :only => [:create, :destroy]
   end
 
-  map.resources :randoris
+  map.resources :randoris, :except => [:show]
   map.resources :users, :only => [:new, :create]
   
   # The priority is based upon order of creation: first created -> highest priority.

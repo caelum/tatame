@@ -11,6 +11,7 @@ Scenario: Add a suggestion when there are no suggestions yet
   And I fill in "description" with "The famous problem"
   And I press "Add"
   Then I should see "Rubik's Cube"
+  And I should see "The famous problem"
 
 Scenario: Add a suggestion when there is already a suggestion
   Given I am on the root page
@@ -22,6 +23,7 @@ Scenario: Add a suggestion when there is already a suggestion
   And I press "Add"
   Then I should see "Rubik's Cube"
   And I should see "Maze"
+  And I should see "Another famous problem"
 
 Scenario: Remove a suggestion when there is only one suggestion
   Given there is a randori suggested with title "Rubik's Cube"
@@ -48,14 +50,6 @@ Scenario: Edit a suggestion
   Then I should see "Magic Cube"
   And I should see "Large Prime Factorization"
   And I should not see "Rubik's Cube"
-
-Scenario: Show a suggestion with details
-  Given there is a randori suggested with title "Rubik's Cube" and description "The famous problem"
-  And there is a randori suggested with title "Large Prime Factorization"
-  And I am on the randoris page
-  When I follow "show_1st"
-  Then I should see "Rubik's Cube"
-  And I should see "The famous problem"
 
 Scenario: Create a suggestion without title
   Given I am on the randoris page

@@ -44,12 +44,6 @@ describe RandorisController do
     put 'update'
     response.should redirect_to(randoris_path)
   end
-  it "should show randoris with details" do
-    Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
-
-    get 'show'
-    assigns[:randori].should equal(@randori)
-  end
   it "should return to the new page when creating an invalid randori" do
     Randori.should_receive(:new).once.with(params[:randori]).and_return(@randori)
     @randori.should_receive(:save).once.and_return(false)
