@@ -74,6 +74,7 @@ describe DojosController do
     UserSession.should_receive(:find).once.and_return(@user_session)
     @user_session.should_receive(:user).once.and_return(@user)
     @dojo.should_receive(:destroy).once
+    @dojo.should_receive(:participants).at_least(:once).and_return([])
     
     post 'destroy'
     response.should redirect_to(root_url)
@@ -87,5 +88,16 @@ describe DojosController do
     response.should redirect_to(root_url)
   end
   
-  it "should be able to destroy dojos and associated itens"
+  it "should be able to destroy dojos and associated items if logged in" do
+    UserSession.should_receive(:find).once.and_return(@user_session)
+    @user_session.should_receive(:user).once.and_return(@user)
+    participant = mock_model(Participant)
+    @dojo.should_receive(:participants).at_least(:once).and_return [participant]
+    Dojo.should_receive(:find).once.with(params[:id]).and_return(@dojo)
+    @dojo.should_receive(:destroy).once
+    participant.should_receive(:destroy).once
+
+    post 'destroy'
+    response.should redirect_to(root_url)
+  end
 end

@@ -23,6 +23,9 @@ class DojosController < ApplicationController
   
   def destroy
     @dojo = Dojo.find(params[:id])
+    @dojo.participants.each { |p|
+      p.destroy
+    }
     @dojo.destroy
     flash[:notice] = "Successfully deleted"
     
