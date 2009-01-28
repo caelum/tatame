@@ -3,9 +3,10 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Welcome, #{@user_session.email}"
-      redirect_to root_path
     else
-      redirect_to request.request_uri
+      @user_session.destroy
+      flash[:notice] = "Login failed"
     end
+    redirect_to root_path
   end
 end

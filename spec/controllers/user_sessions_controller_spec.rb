@@ -16,10 +16,10 @@ describe UserSessionsController do
   it "should not save an invalid user session" do 
     UserSession.should_receive(:new).once.with(params[:user_session]).and_return(@user_session)
     @user_session.should_receive(:save).once.and_return(false)
-
+    @user_session.should_receive(:destroy).once
     post 'create'
     assigns[:user_session].should == @user_session
-    response.should redirect_to(request.request_uri)
+    response.should redirect_to(root_path)
 
   end
 end
