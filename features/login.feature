@@ -6,8 +6,9 @@ Feature: Login
   Scenario: Register an user
     Given I am on the root page
     When I follow "Register"
-    And I fill in "email" with "my@email.com"
-    And I fill in "password" with "pass"
+    And I fill in "Email" with "my@email.com"
+    And I fill in "Password" with "pass"
+    And I fill in "Password Confirmation" with "pass"
     And I press "Register"
     Then I should see "Welcome, my@email.com"
     And there should exist an user with email "my@email.com"
@@ -15,18 +16,21 @@ Feature: Login
   Scenario: Try to register an invalid user
     Given I am on the root page
     When I follow "Register"
-    And I fill in "email" with ""
-    And I fill in "password" with ""
+    And I fill in "Email" with ""
+    And I fill in "Password" with ""
+    And I fill in "Password Confirmation" with ""
     And I press "Register"
-    Then I should see "Email can't be blank"
-    And I should see "Password can't be blank"
+    Then I should see "Email is too short"
+    And I should see "Password is too short"
+    And I should not see "Welcome"
 
   Scenario: Try to register an user that already exists
     Given I am on the root page
     And there is an user registered as "my@email.com"
     When I follow "Register"
-    And I fill in "email" with "my@email.com"
-    And I fill in "password" with "password"
+    And I fill in "Email" with "my@email.com"
+    And I fill in "Password" with "Password"
+    And I fill in "Password Confirmation" with "Password"
     And I press "Register"
     Then I should see "There is an user already registered with this email"
 
@@ -34,8 +38,8 @@ Feature: Login
     Given I am not logged in
     And there is an user registered as "my@email.com"
     And I am on the root page
-    When I fill in "email" with "my@email.com"
-    And I fill in "password" with "1234"
+    When I fill in "Email" with "my@email.com"
+    And I fill in "Password" with "1234"
     And I press "Login"
     Then I should see "Welcome, my@email.com"
     And I should be logged in as "my@email.com"
