@@ -34,18 +34,17 @@ Scenario: Can't delete the next dojo when not authenticated
   And I am on the root page
   When I follow "delete_next"
   Then I should see "delete_next"
-  And I should see "You are not logged in"
+  And I should see "You must be logged in to do this"
 
-Scenario: Can't delete the a dojo when not authenticated
+Scenario: Can't delete a dojo when not authenticated
   Given I am not logged in
   And there are 2 dojos scheduled starting in 1 days
   And I am on the root page
   When I follow "delete_1st"
   Then I should see "delete_next"
   And I should see "delete_1st"
-  And I should see "You are not logged in"
+  And I should see "You must be logged in to do this"
 
 
 Scenario: Delete a past dojo
 
-Scenario: I must be an editor

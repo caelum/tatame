@@ -1,4 +1,5 @@
-class DojosController < ApplicationController  
+class DojosController < ApplicationController
+  before_filter :require_login, :except => [:index]
   def index
     @dojos = Dojo.find(:all, :conditions => ["date > ?", Time.now], :order => "date ASC")
     @dojo = @dojos.shift
@@ -12,27 +13,19 @@ class DojosController < ApplicationController
   
   def create
     @dojo = Dojo.new(params[:dojo])
-    if defined?(current_user_session.user) && current_user_session.user
-      if @dojo.save
-        flash[:notice] = "Successfully created"
-        redirect_to root_url
-      else
-        render :action => "new"
-      end
-    else
-      flash[:notice] = "You are not logged in"
+    if @dojo.save
+      flash[:notice] = "Successfully created"
       redirect_to root_url
+    else
+      render :action => "new"
     end
   end
   
   def destroy
-    if defined?(current_user_session.user) && current_user_session.user
-      @dojo = Dojo.find(params[:id])
-      @dojo.destroy
-      flash[:notice] = "Successfully deleted"
-    else
-      flash[:notice] = "You are not logged in"
-    end
+    @dojo = Dojo.find(params[:id])
+    @dojo.destroy
+    flash[:notice] = "Successfully deleted"
+    
     redirect_to root_url
   end
 end

@@ -11,13 +11,23 @@ describe DojosController do
     @user = mock_model(User)
   end
   
-  it "should make a new dojo" do
+  it "should make a new dojo if logged in" do
     Dojo.stub!(:next_date).and_return(@date)
     Dojo.should_receive(:new).once.and_return(@dojo)
     @dojo.should_receive(:date=).once.with(@date).and_return(@date)
+    UserSession.should_receive(:find).once.and_return(@user_session)
+    @user_session.should_receive(:user).once.and_return(@user)
     
     post 'new'
     assigns[:dojo].should equal(@dojo)
+  end
+
+  it "should not make a new dojo if not logged in" do
+    UserSession.should_receive(:find).once.and_return nil
+
+    post 'new'
+    flash[:notice].should include("must be logged in")
+    response.should redirect_to(root_path)
   end
   
   it "should save the dojo and redirect to root_url if the user is authenticated" do
@@ -32,7 +42,6 @@ describe DojosController do
   end
 
   it "should not save the dojo and should redirect to root_url if the user is not authenticated" do
-    Dojo.should_receive(:new).with(params[:dojo]).once.and_return(@dojo)
     UserSession.should_receive(:find).once.and_return(@user_session)
     @user_session.should_receive(:user).once.and_return(nil)
     
