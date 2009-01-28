@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :randoris, :except => [:show]
   map.resources :users, :only => [:new, :create]
+  map.resource :user_session, :only => [:create]
   
   # The priority is based upon order of creation: first created -> highest priority.
 
