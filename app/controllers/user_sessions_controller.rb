@@ -5,7 +5,7 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Welcome, #{@user_session.email}"
       redirect_to root_path
     else
-      render :action => :index, :controller => :dojos
+      redirect_to request.request_uri
     end
   end
 end

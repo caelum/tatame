@@ -19,7 +19,7 @@ describe UserSessionsController do
 
     post 'create'
     assigns[:user_session].should == @user_session
-    response.should_not redirect_to(root_path)
+    response.should redirect_to(request.request_uri)
 
   end
 end
