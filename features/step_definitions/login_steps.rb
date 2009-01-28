@@ -5,7 +5,7 @@ end
 
 Given /^there is an user registered as "(.*)"$/ do |email|
   User.transaction do
-    User.new(:email => email, :password => '1234').save
+    User.new(:email => email, :password => '1234', :password_confirmation => '1234').save
   end
 end
 
