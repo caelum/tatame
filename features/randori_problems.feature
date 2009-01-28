@@ -77,3 +77,17 @@ Feature: Suggest problems for randoris
     And I am on the randoris page
     When I follow "New"
     Then I should see "You must be logged in to do this"
+
+  Scenario: Try to delete a problem not being logged in
+    Given I am not logged in
+    And there is a randori suggested with title "Rubik's Cube"
+    And I am on the randoris page
+    When I follow "delete_1st"
+    Then I should see "You must be logged in to do this"
+
+  Scenario: Try to edit a problem not being logged in
+    Given I am not logged in
+    And there is a randori suggested with title "Rubik's Cube"
+    And I am on the randoris page
+    When I follow "edit_1st"
+    Then I should see "You must be logged in to do this"

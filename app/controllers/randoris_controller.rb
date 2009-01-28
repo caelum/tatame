@@ -1,60 +1,36 @@
 class RandorisController < ApplicationController
   layout 'simple'
+  before_filter :require_login, :except => [:index]
   
   def index
     @randoris = Randori.find(:all)
   end
   def new
-    if current_user
-      @randori = Randori.new
-    else
-      flash[:notice] = "You must be logged in to do this"
-      redirect_to root_path
-    end
+    @randori = Randori.new
   end
   def create
-    if current_user
-      @randori = Randori.new(params[:randori])
-      if @randori.save
-        redirect_to randoris_path
-      else
-        render :action => :new
-      end
+    @randori = Randori.new(params[:randori])
+    if @randori.save
+      redirect_to randoris_path
     else
-      flash[:notice] = "You must be logged in to do this"
-      redirect_to root_path
+      render :action => :new
     end
   end
   def destroy
-    if current_user
-      @randori = Randori.find(params[:id])
-      @randori.destroy
+    @randori = Randori.find(params[:id])
+    @randori.destroy
 
-      redirect_to randoris_path
-    else
-      flash[:notice] = "You must be logged in to do this"
-      redirect_to root_path
-    end
+    redirect_to randoris_path
   end
   def edit
-    if current_user
-      @randori = Randori.find(params[:id])
-    else
-      flash[:notice] = "You must be logged in to do this"
-      redirect_to root_path
-    end
+    @randori = Randori.find(params[:id])
   end
   def update
-    if current_user
-      @randori = Randori.find(params[:id])
-      if @randori.update_attributes(params[:randori])
-        redirect_to randoris_path
-      else
-        render :action => :edit
-      end
+    @randori = Randori.find(params[:id])
+    if @randori.update_attributes(params[:randori])
+      redirect_to randoris_path
     else
-      flash[:notice] = "You must be logged in to do this"
-      redirect_to root_path
+      render :action => :edit
     end
   end
 end
