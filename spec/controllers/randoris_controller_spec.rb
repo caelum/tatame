@@ -4,13 +4,25 @@ describe RandorisController do
   before(:each) do
     @randori = mock_model(Randori)
     @randoris = mock_model(Randori)
+    @user_session = mock_model(UserSession)
+    @user = mock_model(User)
+    @user_session.stub!(:user).and_return(@user)
   end
   
-  it "should make a new randori" do
+  it "should make a new randori if an user is authenticated" do
     Randori.should_receive(:new).once.and_return(@randori)
+    UserSession.stub!(:find).and_return(@user_session)
 
     post 'new'
     assigns[:randori].should equal(@randori)
+  end
+  
+  it "should not make a new randori if no user is authenticated" do
+    UserSession.stub!(:find).and_return(nil)
+
+    post 'new'
+    response.should redirect_to(root_path)
+    flash[:notice].should include("must be logged in")
   end
   
   it "should list all randoris" do

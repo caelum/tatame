@@ -5,7 +5,12 @@ class RandorisController < ApplicationController
     @randoris = Randori.find(:all)
   end
   def new
-    @randori = Randori.new
+    if current_user
+      @randori = Randori.new
+    else
+      flash[:notice] = "You must be logged in to do this"
+      redirect_to root_path
+    end
   end
   def create
     @randori = Randori.new(params[:randori])
