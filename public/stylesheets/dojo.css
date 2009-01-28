@@ -21,7 +21,12 @@ body {
 }
 
 #menu {
-  padding: 0 0 50px 0;
+  padding: 0 35px 50px 30px;
+}
+
+#menu ul {
+  margin: 0;
+  padding: 0;
 }
 
 #menu li {
@@ -50,7 +55,7 @@ body {
 }
 
 #bd {
-  padding-top: 20px;
+  padding: 20px 35px 0 30px;
 }
 
 .notice {
@@ -62,14 +67,14 @@ body {
 }
 
 .presence-list {
-  background: transparent url("../images/logo-caelum.png") no-repeat 25px 0px;
+  background: transparent url("../images/logo-caelum.png") no-repeat top left;
   padding: 110px 0 0 0;
 }
 
 .presence-list ul, .presence-list ol {
   font-size: 1.7em;
   color: #a62622;
-  padding: 20px 20px 0 40px;
+  padding: 20px 20px 0 0;
 }
 
 #schedule ol {
@@ -80,14 +85,13 @@ body {
   text-indent: -1000px;
   background: transparent url("../images/confirmados.png") no-repeat top left;
   height: 40px;
-  margin: 0 0 0 40px;
 }
 
 .presence-list h2.next {
   text-indent: -1000px;
   background: transparent url("../images/proximas-datas.png") no-repeat top left;
   height: 30px;
-  margin: 40px 0 0 40px;
+  margin: 40px 0 0 0;
 }
 
 .confirmation {

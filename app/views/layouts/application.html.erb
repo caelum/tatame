@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<div id="doc" class="yui-t3">
+<div id="doc">
   <div id="hd">
     <h1>Coding Dojo Caelum</h1>
   </div>
@@ -23,14 +23,14 @@
     </ul>
   </div>
   <div id="bd">
-    <div class="yui-b presence-list">
-      <h2>Confirmados</h2>
-      <%= yield :presence_list %>
-      <h2 class="next">Pr&oacute;ximas Datas</h2>
-      <%= yield :schedule %>
-    </div>
-    <div id="yui-main">
-      <div class="yui-b">
+    <div class="yui-gd">
+      <div class="yui-u first presence-list">
+        <h2>Confirmados</h2>
+        <%= yield :presence_list %>
+        <h2 class="next">Pr&oacute;ximas Datas</h2>
+        <%= yield :schedule %>
+      </div>
+      <div class="yui-u">
         <%= yield %>
       </div>
     </div>
