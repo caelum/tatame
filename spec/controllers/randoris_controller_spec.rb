@@ -48,12 +48,21 @@ describe RandorisController do
     response.should redirect_to(root_path)
     flash[:notice].should include("must be logged in")
   end
-  it "should delete a randori and redirect to the randoris page" do
+  it "should delete a randori and redirect to the randoris page if logged in" do
     Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
     @randori.should_receive(:destroy).once
+    UserSession.stub!(:find).and_return @user_session
 
     post 'destroy'
     response.should redirect_to(randoris_path)
+  end
+
+  it "should not delete a randori if not logged in" do
+    UserSession.stub!(:find).and_return nil
+
+    post 'destroy'
+    response.should redirect_to(root_path)
+    flash[:notice].should include("must be logged in")
   end
   
   it "should edit a randori if logged in" do

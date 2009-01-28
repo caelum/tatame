@@ -26,10 +26,15 @@ class RandorisController < ApplicationController
     end
   end
   def destroy
-    @randori = Randori.find(params[:id])
-    @randori.destroy
+    if current_user
+      @randori = Randori.find(params[:id])
+      @randori.destroy
 
-    redirect_to randoris_path
+      redirect_to randoris_path
+    else
+      flash[:notice] = "You must be logged in to do this"
+      redirect_to root_path
+    end
   end
   def edit
     if current_user
