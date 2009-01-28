@@ -7,6 +7,6 @@ class UserSessionsController < ApplicationController
       @user_session.destroy
       flash[:notice] = "Login failed"
     end
-    redirect_to root_path
+    redirect_to :back
   end
 end
