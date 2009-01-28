@@ -20,6 +20,13 @@ body {
   text-indent: -1000px;  
 }
 
+#hd #login-message, #hd #login-form {
+  float: left;
+  padding-top: 130px;
+  padding-left: 15px;
+  color: white;
+}
+
 #menu {
   padding: 0 35px 50px 30px;
 }

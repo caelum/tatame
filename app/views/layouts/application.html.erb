@@ -20,9 +20,9 @@
       <div id="login-form">
         <% form_tag user_session_url, :method => :post do -%>
           <%= label_tag 'user_session_email', 'Email' %>
-          <%= text_field_tag 'user_session[email]', :id => 'user_session_email' %>
+          <%= text_field_tag 'user_session[email]', nil, :id => 'user_session_email' %>
           <%= label_tag 'user_session_password', 'Password' %>
-          <%= password_field_tag 'user_session[password]', :id => 'user_session_password' %>
+          <%= password_field_tag 'user_session[password]', nil, :id => 'user_session_password' %>
           <%= submit_tag "Login" %>
         <% end -%>
       </div>
