@@ -45,18 +45,18 @@ Feature: Login
     And I should be logged in as "my@email.com"
 
   Scenario: Try to login as an invalid user
-	Given I am not logged in
-	And I am on the root page
-	When I fill in "user_session_email" with "notavaliduser@test.com"
-	When I fill in "user_session_password" with "obviouslyincorrectpassword"
-	And I press "Login"
-	Then I should see "Login failed"
+    Given I am not logged in
+    And I am on the root page
+    When I fill in "user_session_email" with "notavaliduser@test.com"
+    When I fill in "user_session_password" with "obviouslyincorrectpassword"
+    And I press "Login"
+    Then I should see "Login failed"
 
   Scenario: Try to login as an existing user with the incorrect password
-	Given I am not logged in
+    Given I am not logged in
     And there is an user registered as "my@email.com"
-	And I am on the root page
-	When I fill in "user_session_email" with "my@email.com"
-	When I fill in "user_session_password" with "obviouslyincorrectpassword"
-	And I press "Login"
-	Then I should see "Login failed"
+    And I am on the root page
+    When I fill in "user_session_email" with "my@email.com"
+    When I fill in "user_session_password" with "obviouslyincorrectpassword"
+    And I press "Login"
+    Then I should see "Login failed"

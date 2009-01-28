@@ -3,6 +3,13 @@ Given /^I am not logged in$/ do
   session.destroy unless session == nil
 end
 
+Given /^I am logged in$/ do
+  User.transaction do
+    User.new(:email => 'mock@mock.com', :password => '1234', :password_confirmation => '1234').save
+  end
+  UserSession.new(:email => 'mock@mock.com', :password => '1234').save
+end
+
 Given /^there is an user registered as "(.*)"$/ do |email|
   User.transaction do
     User.new(:email => email, :password => '1234', :password_confirmation => '1234').save
