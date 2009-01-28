@@ -13,11 +13,16 @@ class RandorisController < ApplicationController
     end
   end
   def create
-    @randori = Randori.new(params[:randori])
-    if @randori.save
-      redirect_to randoris_path
+    if current_user
+      @randori = Randori.new(params[:randori])
+      if @randori.save
+        redirect_to randoris_path
+      else
+        render :action => :new
+      end
     else
-      render :action => :new
+      flash[:notice] = "You must be logged in to do this"
+      redirect_to root_path
     end
   end
   def destroy
@@ -27,14 +32,24 @@ class RandorisController < ApplicationController
     redirect_to randoris_path
   end
   def edit
-    @randori = Randori.find(params[:id])
+    if current_user
+      @randori = Randori.find(params[:id])
+    else
+      flash[:notice] = "You must be logged in to do this"
+      redirect_to root_path
+    end
   end
   def update
-    @randori = Randori.find(params[:id])
-    if @randori.update_attributes(params[:randori])
-      redirect_to randoris_path
+    if current_user
+      @randori = Randori.find(params[:id])
+      if @randori.update_attributes(params[:randori])
+        redirect_to randoris_path
+      else
+        render :action => :edit
+      end
     else
-      render :action => :edit
+      flash[:notice] = "You must be logged in to do this"
+      redirect_to root_path
     end
   end
 end
