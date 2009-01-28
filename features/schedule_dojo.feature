@@ -7,6 +7,7 @@ Feature: Schedule a dojo session
 
 Scenario: Create first dojo
   Given I am on the root page
+  And I am logged in
   When I follow "New"
   And I select 1 days from now as the date and time
   And I fill in "comment" with "A comment"
@@ -17,13 +18,15 @@ Scenario: Create first dojo
   And I should see "Successfully created"
 
 Scenario: Create next dojos
-  Given I am on the new dojo page
-	And there are 1 dojos scheduled starting in 1 days
-  When I select 2 days from now as the date and time
+  Given I am on the root page
+  And I am logged in
+  And there are 1 dojos scheduled starting in 1 days
+  When I follow "New"
+  And I select 2 days from now as the date and time
   And I press "Create"
-	Then the next dojo should be in 1 days
+  Then the next dojo should be in 1 days
   And I should see a dojo in 2 days inside the schedule tag
-	And I should see "Successfully created"
+  And I should see "Successfully created"
 
 Scenario: No dojo created
   Given there is no scheduled dojo
@@ -32,28 +35,32 @@ Scenario: No dojo created
 
 Scenario: Create dojo before today
 	Given there is no scheduled dojo
+	And I am logged in
 	When I am on the new dojo page
 	And I select -1 days from now as the date and time
 	And I press "Create"
 	Then I should see "No scheduled dojos"
 	
 Scenario: Create dojo with no date
-	Given I am on the new dojo page
+  Given I am on the new dojo page
+  And I am logged in
   When I create a dojo with no date
   Then I should see "Date can't be blank"
 
 Scenario: Create dojo using default date when there is no dojo yet
-  Given I am on the new dojo page
-	And there is no scheduled dojo
+  Given I am logged in
+  And I am on the new dojo page
+  And there is no scheduled dojo
   When I press "Create"
   Then the next dojo should be in 7 days
-	And I should see "Successfully created"
+  And I should see "Successfully created"
 
 Scenario: Create dojo using default date when there is a dojo created last week
   Given there are 1 dojos scheduled starting in 1 days
-	And I am on the new dojo page
+  And I am logged in
+  And I am on the new dojo page
   When I press "Create"
   Then I should see a dojo in 8 days inside the schedule tag
-	And I should see "Successfully created"
+  And I should see "Successfully created"
 
 Scenario: I must be an editor

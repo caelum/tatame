@@ -12,11 +12,16 @@ class DojosController < ApplicationController
   
   def create
     @dojo = Dojo.new(params[:dojo])
-    if @dojo.save
-      flash[:notice] = "Successfully created"
-      redirect_to root_url
+    if defined?(current_user_session.user) && current_user_session.user
+      if @dojo.save
+        flash[:notice] = "Successfully created"
+        redirect_to root_url
+      else
+        render :action => "new"
+      end
     else
-      render :action => "new"
+      flash[:notice] = "You are not logged in."
+      redirect_to root_url
     end
   end
   

@@ -7,7 +7,10 @@ Given /^I am logged in$/ do
   User.transaction do
     User.new(:email => 'mock@mock.com', :password => '1234', :password_confirmation => '1234').save
   end
-  UserSession.new(:email => 'mock@mock.com', :password => '1234').save
+  visit root_url
+  fill_in :user_session_email, :with => 'mock@mock.com'
+  fill_in :user_session_password, :with => '1234'
+  click_button "Login"
 end
 
 Given /^there is an user registered as "(.*)"$/ do |email|
