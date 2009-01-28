@@ -63,4 +63,13 @@ Scenario: Create dojo using default date when there is a dojo created last week
   Then I should see a dojo in 8 days inside the schedule tag
   And I should see "Successfully created"
 
+Scenario: Can't create a dojo when not authenticated
+  Given I am not logged in
+  And I am on the root page
+  When I follow "New"
+  And I fill in "comment" with "A comment"
+  And I press "Create"
+  Then I should see "You are not logged in"
+  And I should see "No scheduled dojos"
+
 Scenario: I must be an editor

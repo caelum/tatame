@@ -20,15 +20,19 @@ class DojosController < ApplicationController
         render :action => "new"
       end
     else
-      flash[:notice] = "You are not logged in."
+      flash[:notice] = "You are not logged in"
       redirect_to root_url
     end
   end
   
   def destroy
-    @dojo = Dojo.find(params[:id])
-    @dojo.destroy
-    flash[:notice] = "Successfully deleted"
+    if defined?(current_user_session.user) && current_user_session.user
+      @dojo = Dojo.find(params[:id])
+      @dojo.destroy
+      flash[:notice] = "Successfully deleted"
+    else
+      flash[:notice] = "You are not logged in"
+    end
     redirect_to root_url
   end
 end

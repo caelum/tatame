@@ -59,10 +59,20 @@ describe DojosController do
     assigns[:dojo].should equal(@dojo)
     response.should render_template("dojos/new")
   end
-  
-  it "should delete a dojo without associated itens" do
+    
+  it "should delete a dojo without associated itens if user is authenticated" do
     Dojo.should_receive(:find).once.with(params[:id]).and_return(@dojo)
+    UserSession.should_receive(:find).once.and_return(@user_session)
+    @user_session.should_receive(:user).once.and_return(@user)
     @dojo.should_receive(:destroy).once
+    
+    post 'destroy'
+    response.should redirect_to(root_url)
+  end
+  
+  it "should not delete a dojo without associated itens if user is not authenticated" do
+    UserSession.should_receive(:find).once.and_return(@user_session)
+    @user_session.should_receive(:user).once.and_return(nil)
     
     post 'destroy'
     response.should redirect_to(root_url)
