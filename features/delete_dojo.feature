@@ -63,3 +63,5 @@ Feature: Delete a dojo session
 	Then I should not see "delete_past_1st"
 
   Scenario: Can't delete dojo with review
+
+  Scenario: Should not see a delete dojo button not being logged in
