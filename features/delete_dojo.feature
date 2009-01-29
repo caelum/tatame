@@ -56,4 +56,10 @@ Feature: Delete a dojo session
     And I should not see "Caue"
 
   Scenario: Delete a past dojo
+	Given I am logged in
+	And there are 1 past dojos
+	And I am on the root page
+	When I follow "delete_past_1st"
+	Then I should not see "delete_past_1st"
 
+  Scenario: Can't delete dojo with review

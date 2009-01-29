@@ -14,6 +14,7 @@ describe Dojo do
     @date = mock_model(Time)
     @date.stub!(:+).and_return(@date)
     @date.stub!(:-).with(7.days).and_return(@date)
+    @date.stub!(:to_f).and_return(1.0)
     Time.stub!(:now).and_return(@date)
     
     @dojo = Dojo.new

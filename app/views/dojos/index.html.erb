@@ -63,7 +63,7 @@
   		<% for dojo in @pastdojos -%>
   				<li>
   					<span id="date"><%=h show_date(dojo.date) %></span>
-  					<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
+  					<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_past_#{i.ordinalize}" %></span>
   				</li>
   				<% i = i + 1 %>
   		<% end -%>
