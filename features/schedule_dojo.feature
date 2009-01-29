@@ -63,10 +63,12 @@ Feature: Schedule a dojo session
     Then I should see a dojo in 8 days inside the schedule tag
     And I should see "Successfully created"
 
-  Scenario: Can't create a dojo when not authenticated
+  Scenario: Can't see New dojo link when not authenticated
     Given I am not logged in
     And I am on the root page
-    When I follow "New"
+	Then I should not see "New"
+	
+  Scenario: Can't create a new dojo when not authenticated
+    Given I am not logged in
+    When I visit the new dojo page
     Then I should see "You must be logged in to do this"
-    And I should see "No scheduled dojos"
-
