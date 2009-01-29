@@ -83,4 +83,8 @@ describe Dojo do
   it "should relate to participants" do
     Dojo.reflect_on_association(:participants).should_not be_nil
   end
+
+  it "should relate to a retrospective" do
+    Dojo.reflect_on_association(:retrospective).should_not be_nil
+  end
 end
