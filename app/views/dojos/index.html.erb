@@ -61,9 +61,15 @@
   	<ol>
   		<% i = 1 -%>
   		<% for dojo in @pastdojos -%>
-  				<li>
+          <li>
             <span id="date"><%=h show_date(dojo.date) %></span>
-            <span id="add"><%= link_to "Add Retrospective", edit_dojo_retrospectives_path(dojo), :id => "add_retrospective_#{i.ordinalize}" %></span>
+            <% if dojo.retrospective.empty? %>
+              <span id="add"><%= link_to "Add Retrospective", edit_dojo_retrospectives_path(dojo), :id => "add_retrospective_#{i.ordinalize}" %></span>
+            <% else %>
+              <div id="retrospective">
+                <span id="retrospective-title"><%=h dojo.retrospective.dojo_title %></span>
+              </div>
+            <% end %>
   					<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_past_#{i.ordinalize}" %></span>
   				</li>
   				<% i = i + 1 %>
