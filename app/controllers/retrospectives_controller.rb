@@ -1,0 +1,3 @@
+class RandorisController < ApplicationController
+  
+end
