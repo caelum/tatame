@@ -2,6 +2,7 @@ class DojosController < ApplicationController
   before_filter :require_login, :except => [:index]
   def index
     @dojos = Dojo.find(:all, :conditions => ["date > ?", Time.now], :order => "date ASC")
+    @pastdojos = Dojo.find(:all, :conditions => ["date <= ?", Time.now], :order => "date DESC")
     @dojo = @dojos.shift
     @participant = Participant.new
   end

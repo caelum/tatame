@@ -53,6 +53,7 @@ describe DojosController do
     date = Time.now
     Time.stub!(:now).and_return(date)
     Dojo.should_receive(:find).once.with(:all, :conditions => ["date > ?", date], :order => "date ASC").and_return(@dojos)
+    Dojo.should_receive(:find).once.with(:all, :conditions => ["date <= ?", date], :order => "date DESC").and_return(@dojos)
     get 'index'
     assigns[:dojos].should equal(@dojos)
     assigns[:dojo].should equal(@dojo)
