@@ -9,6 +9,7 @@ describe DojosController do
     @date = mock_model(Time)
     @user_session = mock_model(UserSession)
     @user = mock_model(User)
+    @retro = mock_model(Retrospective)
   end
   
   it "should make a new dojo if logged in" do
@@ -30,11 +31,13 @@ describe DojosController do
     response.should redirect_to(root_path)
   end
   
-  it "should save the dojo and redirect to root_url if the user is authenticated" do
+  it "should save the dojo with a retrospective and redirect to root_url if the user is authenticated" do
     Dojo.should_receive(:new).with(params[:dojo]).once.and_return(@dojo)
     UserSession.should_receive(:find).once.and_return(@user_session)
-    @user_session.should_receive(:user).once.and_return(@user)
+    Retrospective.should_receive(:new).once.and_return(@retro)
+    @dojo.should_receive(:retrospective=).once.with(@retro).and_return(@retro)
     @dojo.should_receive(:save).once.and_return(true)
+    @user_session.should_receive(:user).once.and_return(@user)
     
     post 'create'
     assigns[:dojo].should equal(@dojo)
@@ -61,8 +64,10 @@ describe DojosController do
   it "should go back to the form on validation errors" do
     Dojo.should_receive(:new).once.and_return(@dojo)
     UserSession.should_receive(:find).once.and_return(@user_session)
+    Retrospective.should_receive(:new).once.and_return(@retro)
     @user_session.should_receive(:user).once.and_return(@user)
     @dojo.should_receive(:save).once.and_return(false)
+    @dojo.should_receive(:retrospective=).once.with(@retro).and_return(@retro)
     
     post 'create'
     assigns[:dojo].should equal(@dojo)

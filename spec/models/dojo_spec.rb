@@ -12,8 +12,6 @@ describe Dojo do
   
   before(:each) do
     @date = mock_model(Time)
-    @dojo = mock_model(Dojo)
-    @dojo.stub!(:date).and_return(@date)
     @date.stub!(:+).and_return(@date)
     @date.stub!(:-).with(7.days).and_return(@date)
     Time.stub!(:now).and_return(@date)

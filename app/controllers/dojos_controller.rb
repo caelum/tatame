@@ -13,6 +13,7 @@ class DojosController < ApplicationController
   
   def create
     @dojo = Dojo.new(params[:dojo])
+    @dojo.retrospective = Retrospective.new
     if @dojo.save
       flash[:notice] = "Successfully created"
       redirect_to root_url
