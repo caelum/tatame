@@ -15,6 +15,15 @@ Given /there are (\d+) dojos scheduled starting in ([-]{0,1}\d+) days/ do |n, of
   end
 end
 
+Given /there are (\d+) past dojos/ do |n|
+  Dojo.transaction do
+    Dojo.destroy_all
+    n.to_i.times do |n|
+      Dojo.create! :date => today - 1.day - (n.to_i).days
+    end
+  end
+end
+
 Given /^there is no scheduled dojo$/ do
   Dojo.transaction do
     Dojo.destroy_all
@@ -80,6 +89,17 @@ Then /^I should see a dojo in (\d+) days inside the schedule tag$/ do |n|
   response.should have_tag("div#schedule") do
     with_tag("ol") do
       date = (today + n.to_i.days).strftime("%Y-%m-%d - %H:%M")
+      with_tag("li") do
+        with_tag("span#date", "#{date}")
+      end
+    end
+  end
+end
+
+Then /^I should see a dojo (\d+) days past$/ do |n|
+  response.should have_tag("div#past_dojos") do
+    with_tag("ol") do
+      date = (today - n.to_i.days).strftime("%Y-%m-%d - %H:%M")
       with_tag("li") do
         with_tag("span#date", "#{date}")
       end
