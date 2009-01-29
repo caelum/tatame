@@ -8,8 +8,10 @@
 		<span id="date"><%=h show_date(@dojo.date) %></span>
 		<p id="comment">
 		  <%=h @dojo.comment %>
-		  <%= link_to image_tag('cross.png'), @dojo, :confirm => 'Are you sure?', 
+		  <% if current_user %>
+		  	<%= link_to image_tag('cross.png'), @dojo, :confirm => 'Are you sure?', 
 		              :method => :delete, :id => "delete_next" %>
+		  <% end %>
 		</p>
 		
 		<% content_for :presence_list do -%>
@@ -38,7 +40,9 @@
   		<% for dojo in @dojos -%>
   				<li>
   					<span id="date"><%=h show_date(dojo.date) %></span>
-  					<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
+  					<% if current_user %>
+  						<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
+  					<% end %>
   				</li>
   				<% i = i + 1 %>
   		<% end -%>
@@ -64,7 +68,9 @@
   				<li>
             <span id="date"><%=h show_date(dojo.date) %></span>
             <span id="add"><%= link_to "Add Retrospective", edit_dojo_retrospectives_path(dojo), :id => "add_retrospective_#{i.ordinalize}" %></span>
-  					<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_past_#{i.ordinalize}" %></span>
+            <% if current_user %>
+  				<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_past_#{i.ordinalize}" %></span>
+  			<% end %>
   				</li>
   				<% i = i + 1 %>
   		<% end -%>

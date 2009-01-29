@@ -28,23 +28,6 @@ Feature: Delete a dojo session
     Then the next dojo should be in 1 days
     And I should see "Successfully deleted"
 
-  Scenario: Can't delete the next dojo when not authenticated
-    Given I am not logged in
-    And there are 1 dojos scheduled starting in 1 days
-    And I am on the root page
-    When I follow "delete_next"
-    Then I should see "delete_next"
-    And I should see "You must be logged in to do this"
-
-  Scenario: Can't delete a dojo when not authenticated
-    Given I am not logged in
-    And there are 2 dojos scheduled starting in 1 days
-    And I am on the root page
-    When I follow "delete_1st"
-    Then I should see "delete_next"
-    And I should see "delete_1st"
-    And I should see "You must be logged in to do this"
-
   Scenario: Delete a dojo with participants when authenticated
     Given I am logged in
     And there are 1 dojos scheduled starting in 1 days
@@ -64,4 +47,15 @@ Feature: Delete a dojo session
 
   Scenario: Can't delete dojo with review
 
-  Scenario: Should not see a delete dojo button not being logged in
+  Scenario: Can't see the dojo deletion link for future dojos if not logged in
+    Given I am not logged in
+    And there are 2 dojos scheduled starting in 1 days
+    And I am on the root page
+    Then I should not see "delete_next"
+    Then I should not see "delete_1st"
+ 
+   Scenario: Can't see the dojo deletion link for past dojos if not logged in
+    Given I am not logged in
+    And there are 2 past dojos scheduled
+    And I am on the root page
+    Then I should not see "delete_past_1st"
