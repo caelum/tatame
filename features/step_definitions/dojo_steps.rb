@@ -19,7 +19,7 @@ Given /there are (\d+) past dojos/ do |n|
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => today - 1.day - (n.to_i).days
+      Dojo.create! :date => today - 1.day - (n.to_i).days, :retrospective => Retrospective.new
     end
   end
 end
