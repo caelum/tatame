@@ -1,0 +1,17 @@
+<p>Date: <%=h show_date(@dojo.date) %></p>
+<% form_for @retrospective do |f| -%>
+  <%= f.label :dojo_title %><br/>
+  <%= f.text_field :dojo_title %><br/>
+  <%= f.label :problem %><br/>
+  <%= f.text_field :problem %><br/>
+  <%= f.label :code %><br/>
+  <%= f.text_field :code %><br/>
+  <%= f.label :report %><br/>
+  <%= f.text_area :report, :cols => 80, :rows => 24 %><br/>
+  <%= f.label :retrospective %><br/>
+  <%= f.text_area :retrospective, :cols => 80, :rows => 24 %><br/>
+  <%= f.label :parking_lot %><br/>
+  <%= f.text_area :parking_lot, :cols => 80, :rows => 24 %><br/>
+  <%= f.submit "Save", :disable_with => 'Saving...' %>
+<% end -%>
+<%= link_to "Back", root_path %>

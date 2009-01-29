@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :dojos, :only  => [:new, :index, :create, :destroy] do |dojo|
     dojo.resources :participants, :only => [:create, :destroy]
+    dojo.resource :retrospectives, :only => [:edit]
   end
 
   map.resources :randoris, :except => [:show]
