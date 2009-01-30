@@ -13,9 +13,9 @@ Then /^I should see a dojo (\d+) days past with retrospective$/ do |n|
   response.should have_tag("div#past_dojos") do
     with_tag("ol") do
       with_tag("li") do
-        with_tag("span#date", "#{date}")
-        with_tag("div#retrospective")
-        without_tag("span#add")
+        with_tag("span.date", "#{date}")
+        with_tag("div.retrospective")
+        without_tag("span.add")
       end
     end
   end

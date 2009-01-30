@@ -5,8 +5,8 @@
 <div id="next">
 	<% unless @dojo.nil? -%>
 	  <h2>Próximo Dojo: </h2>
-		<span id="date"><%=h show_date(@dojo.date) %></span>
-		<p id="comment">
+		<span class="date"><%=h show_date(@dojo.date) %></span>
+		<p class="comment">
 		  <%=h @dojo.comment %>
 		  <% if current_user %>
 		  	<%= link_to image_tag('cross.png'), @dojo, :confirm => 'Are you sure?', 
@@ -19,7 +19,7 @@
 			<ul>
 				<% @dojo.participants.each do |participant| -%>
 					<li>
-						<span id="name"><%=h participant.name %></span>
+						<span class="name"><%=h participant.name %></span>
 						<%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
 						            :confirm => 'Are you sure?', :method => :delete, 
 						            :id => "remove_#{participant.name}" %>
@@ -39,9 +39,9 @@
   		<% i = 1 -%>
   		<% for dojo in @dojos -%>
   				<li>
-  					<span id="date"><%=h show_date(dojo.date) %></span>
+  					<span class="date"><%=h show_date(dojo.date) %></span>
   					<% if current_user %>
-  						<span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
+  						<span class="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{i.ordinalize}" %></span>
   					<% end %>
   				</li>
   				<% i = i + 1 %>
@@ -64,18 +64,18 @@
   <div id="past_dojos">
   	<ol>
   		<% i = 1 -%>
-  		<% for dojo in @pastdojos -%>
+      <% for dojo in @pastdojos -%>
           <li>
-            <span id="date"><%=h show_date(dojo.date) %></span>
+            <span class="date"><%=h show_date(dojo.date) %></span>
             <% if dojo.retrospective.blank? %>
-              <span id="add"><%= link_to "Add Retrospective", new_dojo_retrospective, :id => "add_retrospective_#{i.ordinalize}" %></span>
+              <span class="add"><%= link_to "Add Retrospective", edit_dojo_retrospectives_path(dojo), :id => "add_retrospective_#{i.ordinalize}" %></span>
             <% else %>
-              <div id="retrospective">
-                <span id="retrospective-title"><%=h dojo.retrospective.dojo_title %></span>
+              <div class="retrospective">
+                <span class="retrospective-title"><%=h dojo.retrospective.dojo_title %></span>
               </div>
             <% end %>
             <% if current_user %>
-              <span id="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_past_#{i.ordinalize}" %></span>
+              <span class="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_past_#{i.ordinalize}" %></span>
             <% end %>
   				</li>
   				<% i = i + 1 %>
