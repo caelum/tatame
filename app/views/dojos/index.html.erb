@@ -68,7 +68,7 @@
           <li>
             <span class="date"><%=h show_date(dojo.date) %></span>
             <% if dojo.retrospective.blank? %>
-              <span class="add"><%= link_to "Add Retrospective", edit_dojo_retrospectives_path(dojo), :id => "add_retrospective_#{i.ordinalize}" %></span>
+              <span class="add"><%= link_to "Add Retrospective", edit_dojo_retrospective_path(dojo), :id => "add_retrospective_#{i.ordinalize}" %></span>
             <% else %>
               <div class="retrospective">
                 <span class="retrospective-title"><%=h dojo.retrospective.dojo_title %></span>
