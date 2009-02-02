@@ -30,9 +30,10 @@ describe RetrospectivesController do
     @retro.should_receive(:update_attributes).once.with(params[:retrospective]).and_return(true)
     
     put 'update'
-    response.should redirect_to(root_path)  end
+    response.should redirect_to(root_path)
+  end
   
-  it "should not update a retrospective when logged in" do
+  it "should not update a retrospective when not logged in" do
     UserSession.stub!(:find).and_return(nil)
 
     put 'update'

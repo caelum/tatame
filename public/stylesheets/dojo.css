@@ -188,3 +188,27 @@ body {
   padding-right: 260px;
   text-align: justify;
 }
+
+#past_dojos li.past_dojo {
+  padding: 1em 0;
+}
+
+#past_dojos span.date,
+#past_dojos span.date-title-separator,
+#past_dojos span.title {
+  font-size: 1.5em;
+  color: #A62622;
+}
+
+#past_dojos span.title {
+  font-weight: bold;
+}
+
+#past_dojos div.retrospective ul {
+  padding: 5px 0 10px 0;
+}
+
+#past_dojos div.retrospective span.field {
+  font-size: 1.5em;
+  font-weight: bold;
+}
