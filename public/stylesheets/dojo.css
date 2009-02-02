@@ -157,12 +157,12 @@ body {
   width: 218px;
 }
 
-#next p#comment {
+#next p.comment {
   clear: both;
   padding: 3px 5px 5px 5px;
 }
 
-#next span#date {
+#next span.date {
   font-size: 1.4em;
   padding-top: 9px;
   display: block;
