@@ -8,6 +8,19 @@ Given /^the dojo (\d+) days past has a retrospective$/ do |n|
   end
 end
 
+Given /^the dojo (\d+) days past has (\d+) participants$/ do |n, p|
+  dojo = Dojo.find(:first, :conditions => ['date == ?', today - n.to_i.days])
+  id = dojo.id
+  p.to_i.times do |i|
+    mp = Participant.new
+    mp.name = "Participant #{i+1}"
+    mp.dojo_id = id
+    mp.save  end  
+  Retrospective.transaction do
+    dojo.retrospective.save
+  end
+end
+
 Then /^I should see a dojo (\d+) days past with retrospective$/ do |n|
   retrospectives = Retrospective.find(:all)
   possible_dojos = []
