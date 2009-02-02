@@ -28,6 +28,7 @@ class DojosController < ApplicationController
     @dojo.participants.each { |p|
       p.destroy
     }
+    @dojo.retrospective.destroy
     @dojo.destroy
     flash[:notice] = "Successfully deleted"
     

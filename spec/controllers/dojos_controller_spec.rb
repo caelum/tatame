@@ -75,18 +75,20 @@ describe DojosController do
     response.should render_template("dojos/new")
   end
     
-  it "should delete a dojo without associated itens if user is authenticated" do
+  it "should delete a dojo with its retrospective without associated participants if user is authenticated" do
     Dojo.should_receive(:find).once.with(params[:id]).and_return(@dojo)
     UserSession.should_receive(:find).once.and_return(@user_session)
     @user_session.should_receive(:user).once.and_return(@user)
     @dojo.should_receive(:destroy).once
     @dojo.should_receive(:participants).at_least(:once).and_return([])
+    @dojo.should_receive(:retrospective).at_least(:once).and_return(@retro)
+    @retro.should_receive(:destroy).once
     
     post 'destroy'
     response.should redirect_to(root_url)
   end
   
-  it "should not delete a dojo without associated itens if user is not authenticated" do
+  it "should not delete a dojo without associated participants if user is not authenticated" do
     UserSession.should_receive(:find).once.and_return(@user_session)
     @user_session.should_receive(:user).once.and_return(nil)
     
@@ -94,13 +96,15 @@ describe DojosController do
     response.should redirect_to(root_url)
   end
   
-  it "should be able to destroy dojos and associated items if logged in" do
-    UserSession.should_receive(:find).once.and_return(@user_session)
-    @user_session.should_receive(:user).once.and_return(@user)
+  it "should be able to destroy dojos and its retrospective and associated participants if logged in" do
+    UserSession.should_receive(:find).once.and_return @user_session
+    @user_session.should_receive(:user).once.and_return @user
     participant = mock_model(Participant)
     @dojo.should_receive(:participants).at_least(:once).and_return [participant]
-    Dojo.should_receive(:find).once.with(params[:id]).and_return(@dojo)
+    @dojo.should_receive(:retrospective).at_least(:once).and_return @retro
+    Dojo.should_receive(:find).once.with(params[:id]).and_return @dojo
     @dojo.should_receive(:destroy).once
+    @retro.should_receive(:destroy).once
     participant.should_receive(:destroy).once
 
     post 'destroy'

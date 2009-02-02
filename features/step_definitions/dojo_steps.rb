@@ -10,7 +10,7 @@ Given /there are (\d+) dojos scheduled starting in ([-]{0,1}\d+) days/ do |n, of
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => today + (n.to_i + offset.to_i).days
+      Dojo.create! :date => today + (n.to_i + offset.to_i).days, :retrospective => Retrospective.new
     end
   end
 end
