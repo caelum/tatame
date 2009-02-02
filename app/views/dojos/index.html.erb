@@ -68,11 +68,16 @@
         <li id="dojo_<%= dojo.id %>">
             <span class="date"><%=h show_date(dojo.date) %></span>
             <% if dojo.retrospective.blank? %>
-              <span class="add"><%= link_to "Add Retrospective", edit_dojo_retrospective_path(dojo), :id => "add_retrospective_#{i.ordinalize}" %></span>
+              <% if current_user %>
+                <span class="add"><%= link_to "Add Retrospective", edit_dojo_retrospective_path(dojo), :id => "add_retrospective_#{i.ordinalize}" %></span>
+              <% end %>
             <% else %>
               <div class="retrospective">
                 <span class="retrospective-title"><%=h dojo.retrospective.dojo_title %></span>
               </div>
+              <% if current_user %>
+                <span class="edit"><%= link_to "Edit Retrospective", edit_dojo_retrospective_path(dojo), :id => "edit_retrospective_#{i.ordinalize}" %></span>
+              <% end %>
             <% end %>
             <% if current_user %>
               <span class="delete"><%= link_to image_tag('cross.png'), dojo, :confirm => 'Are you sure?', :method => :delete, :id => "delete_past_#{i.ordinalize}" %></span>

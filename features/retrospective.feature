@@ -4,7 +4,8 @@ Feature: Retrospective
   I want to create, edit and show retrospectives
   
   Scenario: Show past dojos with empty retrospectives
-    Given there are 3 past dojos
+    Given I am logged in
+    And there are 3 past dojos
     And I am on the root page
     Then I should see a dojo 1 days past
     And I should see "add_retrospective_1st"
@@ -14,7 +15,8 @@ Feature: Retrospective
     And I should see "add_retrospective_3rd"
 
   Scenario: Show past dojos with retrospectives
-    Given there are 2 past dojos
+    Given I am logged in
+    And there are 2 past dojos
     And the dojo 1 days past has a retrospective
     And I am on the root page
     Then I should see a dojo 1 days past with retrospective
@@ -23,8 +25,25 @@ Feature: Retrospective
     And I should see "add_retrospective_2nd"
 
   Scenario: Add a retrospective being logged in
+    Given I am logged in
+    And there are 1 past dojos
+    And I am on the root page
+    When I follow "add_retrospective_1st"
+    And I fill in "Problem" with "Rubik's Cube"
+    And I fill in "Code" with "http://hyperlink.to/code"
+    And I fill in "Report" with "Loren ipsum dolor sit amet."
+    And I fill in "Retrospective" with "Duis sed magna. Etiam vel nunc."
+    And I fill in "Parking Lot" with "... is full"
+    And I fill in "Dojo title" with "Magic Cube"
+    And I press "Save"
+    Then I should not see "add_retrospective_1st"
+    And I should see "edit_retrospective_1st"
 
   Scenario: Can't add a retrospective not being logged in
+    Given I am not logged in
+    And there are 1 past dojos
+    And I am on the root page
+    Then I should not see "add_retrospective_1st"
 
   Scenario: Edit a retrospective being logged in
 
