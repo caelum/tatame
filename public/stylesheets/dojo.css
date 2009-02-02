@@ -163,8 +163,8 @@ body {
 }
 
 #next span.date {
-  font-size: 1.4em;
-  padding-top: 9px;
+  font-size: 27px;
+  padding-top: 3px;
   display: block;
 }
 
@@ -208,7 +208,15 @@ body {
   padding: 5px 0 10px 0;
 }
 
+#past_dojos div.retrospective ul li {
+  padding: 2px 0;
+}
+
 #past_dojos div.retrospective span.field {
   font-size: 1.5em;
   font-weight: bold;
+}
+
+#past_dojos div.retrospective span.value {
+  font-size: 1.1em;
 }

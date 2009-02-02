@@ -80,9 +80,12 @@
               <% end %>
             <% else %>
               <ul class="fields">
-                <li><span class="field participants">Participants:</span><span class="value"></span></li>
-                <li><span class="field problem">Problem:</span><span class="value"><%= dojo.retrospective.problem %></span></li>
-                <li><span class="field code">Code:</span><span class="value"><%= dojo.retrospective.code %></span></li>
+                <li><span class="field participants">Participants: </span><span class="value"></span></li>
+                <li><span class="field problem">Problem: </span><span class="value"><%= dojo.retrospective.problem %></span></li>
+                <li><span class="field code">Code: </span><span class="value"><%= dojo.retrospective.code %></span></li>
+                <li><span class="field report">Report: </span><span class="value"><%= dojo.retrospective.report %></span></li>
+                <li><span class="field retrospective">Retrospective: </span><span class="value"><%= dojo.retrospective.retrospective %></span></li>
+                <li><span class="field parking-lot">Parking lot: </span><span class="value"><%= dojo.retrospective.parking_lot %></span></li>
               </ul>
               <% if current_user %>
                 <span class="edit"><%= link_to "Edit Retrospective", edit_dojo_retrospective_path(dojo), :id => "edit_retrospective_#{i.ordinalize}" %></span>
