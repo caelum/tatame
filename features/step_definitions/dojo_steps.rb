@@ -19,7 +19,7 @@ Given /there are (\d+) past dojos/ do |n|
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => today - 1.day - (n.to_i).days, :retrospective => Retrospective.new
+      Dojo.create! :date => today - (1 + n.to_i).days, :retrospective => Retrospective.new
     end
   end
 end
@@ -106,5 +106,5 @@ Then /^I should see a dojo (\d+) days past$/ do |n|
 end
 
 def today
-  Time.utc(Time.now.year, Time.now.month, Time.now.day, 19, 0)
+  Time.local(Time.now.year, Time.now.month, Time.now.day, 19, 0)
 end
