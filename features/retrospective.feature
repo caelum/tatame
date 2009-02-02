@@ -34,10 +34,11 @@ Feature: Retrospective
     And I fill in "Report" with "Loren ipsum dolor sit amet."
     And I fill in "Retrospective" with "Duis sed magna. Etiam vel nunc."
     And I fill in "Parking Lot" with "... is full"
-    And I fill in "Dojo title" with "Magic Cube"
+    And I fill in "Dojo title" with "A searchable title"
     And I press "Save"
     Then I should not see "add_retrospective_1st"
     And I should see "edit_retrospective_1st"
+    And I should see "A searchable title"
 
   Scenario: Can't add a retrospective not being logged in
     Given I am not logged in
@@ -46,5 +47,19 @@ Feature: Retrospective
     Then I should not see "add_retrospective_1st"
 
   Scenario: Edit a retrospective being logged in
+    Given I am logged in
+    And there are 1 past dojos
+    And the dojo 1 days past has a retrospective
+    And I am on the root page
+    When I follow "edit_retrospective_1st"
+    And I fill in "Dojo title" with "A searchable title"
+    And I press "Save"
+    Then I should see "A searchable title"
 
   Scenario: Can't edit a retrospective not being logged in
+    Given I am not logged in
+    And there are 1 past dojos
+    And the dojo 1 days past has a retrospective
+    And I am on the root page
+    Then I should not see "edit_retrospective_1st"
+  
