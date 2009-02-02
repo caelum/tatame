@@ -1,5 +1,9 @@
 <p>Date: <%=h show_date(@dojo.date) %></p>
 <% form_for @retrospective, :url => { :action => "update" } do |f| -%>
+  <% @participants.each do |p| %>
+    <%= f.label p.name %>
+    <br>
+  <% end %>
   <%= f.label :dojo_title %><br/>
   <%= f.text_field :dojo_title %><br/>
   <%= f.label :problem %><br/>

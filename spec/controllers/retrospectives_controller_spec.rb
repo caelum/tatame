@@ -12,6 +12,7 @@ describe RetrospectivesController do
     UserSession.stub!(:find).and_return(@user_session)
     Retrospective.should_receive(:find).once.with(:first, :conditions => ["dojo_id = ?", params[:dojo_id]]).and_return @retro
     Dojo.should_receive(:find).once.with(params[:dojo_id]).and_return @dojo
+    Participant.should_receive(:find).once.with(:all, :conditions => ["dojo_id = ?", params[:dojo_id]])
     
     get 'edit'
     assigns[:retrospective].should == @retro

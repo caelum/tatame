@@ -63,3 +63,16 @@ Feature: Retrospective
     And I am on the root page
     Then I should not see "edit_retrospective_1st"
   
+  Scenario: List all subscribed participants in retrospective edit page
+    Given I am logged in
+    And there are 1 past dojos
+    And the dojo 1 days past has 3 participants
+    And I am on the root page
+    When I follow "add_retrospective_1st"
+    Then I should see "Participant 1"
+    Then I should see "Participant 2"
+    Then I should see "Participant 3"
+  
+  Scenario: Subscribe new participants in retrospective edit page
+  
+  Scenario: Confirm presence of subscribe participants in perspective edit page
