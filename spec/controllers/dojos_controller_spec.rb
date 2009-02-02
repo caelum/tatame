@@ -82,6 +82,7 @@ describe DojosController do
     @dojo.should_receive(:destroy).once
     @dojo.should_receive(:participants).at_least(:once).and_return([])
     @dojo.should_receive(:retrospective).at_least(:once).and_return(@retro)
+    @retro.should_receive(:blank?).once.and_return(true)
     @retro.should_receive(:destroy).once
     
     post 'destroy'
@@ -97,17 +98,31 @@ describe DojosController do
   end
   
   it "should be able to destroy dojos and its retrospective and associated participants if logged in" do
-    UserSession.should_receive(:find).once.and_return @user_session
-    @user_session.should_receive(:user).once.and_return @user
     participant = mock_model(Participant)
+    
+    UserSession.should_receive(:find).once.and_return @user_session
+    Dojo.should_receive(:find).once.with(params[:id]).and_return @dojo
+    @user_session.should_receive(:user).once.and_return @user
     @dojo.should_receive(:participants).at_least(:once).and_return [participant]
     @dojo.should_receive(:retrospective).at_least(:once).and_return @retro
-    Dojo.should_receive(:find).once.with(params[:id]).and_return @dojo
     @dojo.should_receive(:destroy).once
+    @retro.should_receive(:blank?).once.and_return true
     @retro.should_receive(:destroy).once
     participant.should_receive(:destroy).once
 
     post 'destroy'
     response.should redirect_to(root_url)
   end
+
+  it "should not delete a dojo with a non-empty retrospective even if logged in" do
+    Dojo.should_receive(:find).once.with(params[:id]).and_return(@dojo)
+    UserSession.should_receive(:find).once.and_return(@user_session)
+    @user_session.should_receive(:user).once.and_return(@user)
+    @dojo.should_receive(:retrospective).at_least(:once).and_return(@retro)
+    @retro.should_receive(:blank?).once.and_return(false)
+    
+    post 'destroy'
+    response.should redirect_to(root_url)
+    flash[:notice].should include("non-empty retrospective")
+ end
 end

@@ -39,13 +39,20 @@ Feature: Delete a dojo session
     And I should not see "Caue"
 
   Scenario: Delete a past dojo
-	Given I am logged in
-	And there are 1 past dojos
-	And I am on the root page
-	When I follow "delete_past_1st"
-	Then I should not see "delete_past_1st"
+    Given I am logged in
+    And there are 1 past dojos
+    And I am on the root page
+    When I follow "delete_past_1st"
+    Then I should not see "delete_past_1st"
 
-  Scenario: Can't delete dojo with review
+  Scenario: Can't delete dojo with review being logged in
+    Given I am logged in
+    And there are 1 past dojos
+    And the dojo 1 days past has a retrospective
+    And I am on the root page
+    When I follow "delete_past_1st"
+    Then I should see "delete_past_1st"
+    And I should see "You cannot delete a dojo with a non-empty retrospective"
 
   Scenario: Can't see the dojo deletion link for future dojos if not logged in
     Given I am not logged in

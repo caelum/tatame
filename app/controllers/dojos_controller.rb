@@ -25,12 +25,16 @@ class DojosController < ApplicationController
   
   def destroy
     @dojo = Dojo.find(params[:id])
-    @dojo.participants.each { |p|
-      p.destroy
-    }
-    @dojo.retrospective.destroy
-    @dojo.destroy
-    flash[:notice] = "Successfully deleted"
+    if @dojo.retrospective.blank?
+      @dojo.retrospective.destroy
+      @dojo.participants.each { |p|
+        p.destroy
+      }
+      @dojo.destroy
+      flash[:notice] = "Successfully deleted"
+    else
+      flash[:notice] = "You cannot delete a dojo with a non-empty retrospective"
+    end
     
     redirect_to root_url
   end
