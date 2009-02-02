@@ -12,17 +12,19 @@ describe Retrospective do
     @retro.should be_valid
   end
   
-  it "should be empty" do
-    @retro.should be_empty  end
+  it "should be blank" do
+    @retro.should be_blank
+  end
   
-  it "should not be empty if an attribute is set" do
-    @retro.should be_empty
+  it "should not be blank if an attribute is set" do
+    @retro.should be_blank
     attrs = @retro.attribute_names - ['id', 'dojo_id', 'created_at', 'updated_at']
     attrs.collect! {|attr| attr + "="}
     attrs.each do |attr|
       @retro.send attr, "An enlightening string"
-      @retro.should_not be_empty
+      @retro.should_not be_blank
       @retro.send attr, nil
-      @retro.should be_empty
-    end  end
+      @retro.should be_blank
+    end
+  end
 end

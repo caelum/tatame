@@ -14,7 +14,7 @@ Feature: Retrospective
     And I should see "add_retrospective_3rd"
 
   Scenario: Show past dojos with retrospectives
-    Given there are 1 past dojos
+    Given there are 2 past dojos
     And the dojo 1 days past has a retrospective
     And I am on the root page
     Then I should see a dojo 1 days past with retrospective

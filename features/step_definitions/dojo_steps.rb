@@ -19,7 +19,7 @@ Given /there are (\d+) past dojos/ do |n|
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => today - 1.day - (n.to_i).days, :retrospective => Retrospective.new
+      Dojo.create! :date => today - (1 + n.to_i).days, :retrospective => Retrospective.new
     end
   end
 end
@@ -73,15 +73,13 @@ end
 Then /^the next dojo should be in (\d+) days$/ do |n|
   response.should have_tag("div#next") do
     date = (today + n.to_i.days).strftime("%Y-%m-%d - %H:%M")
-    with_tag("div#next") do
-      with_tag("span#date", "#{date}")
-    end
+    with_tag("span.date", "#{date}")
   end
 end
 
 Then /^the next dojo (\w+) should be "(.*)"$/ do |id, item|
   response.should have_tag("div") do
-    with_tag("p##{id}", "#{item}") or with_tag("span##{id}", "#{item}")
+    with_tag("p.#{id}", "#{item}") or with_tag("span.#{id}", "#{item}")
   end
 end
 
@@ -90,7 +88,7 @@ Then /^I should see a dojo in (\d+) days inside the schedule tag$/ do |n|
     with_tag("ol") do
       date = (today + n.to_i.days).strftime("%Y-%m-%d - %H:%M")
       with_tag("li") do
-        with_tag("span#date", "#{date}")
+        with_tag("span.date", "#{date}")
       end
     end
   end
@@ -101,12 +99,12 @@ Then /^I should see a dojo (\d+) days past$/ do |n|
     with_tag("ol") do
       date = (today - n.to_i.days).strftime("%Y-%m-%d - %H:%M")
       with_tag("li") do
-        with_tag("span#date", "#{date}")
+        with_tag("span.date", "#{date}")
       end
     end
   end
 end
 
 def today
-  Time.utc(Time.now.year, Time.now.month, Time.now.day, 19, 0)
+  Time.local(Time.now.year, Time.now.month, Time.now.day, 19, 0)
 end
