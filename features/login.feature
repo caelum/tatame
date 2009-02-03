@@ -4,17 +4,19 @@ Feature: Login
   I want to have control of login and edition of the system
 
   Scenario: Register an user
-    Given I am on the root page
+    Given I am logged in
+    And I am on the root page
     When I follow "Register"
     And I fill in "user_email" with "my@email.com"
     And I fill in "user_password" with "pass"
     And I fill in "user_password_confirmation" with "pass"
     And I press "Register"
-    Then I should see "Welcome, my@email.com"
+    Then I should see "Added user my@email.com"
     And there should exist an user with email "my@email.com"
 
   Scenario: Try to register an invalid user
-    Given I am on the root page
+    Given I am logged in
+    And I am on the root page
     When I follow "Register"
     And I fill in "user_email" with ""
     And I fill in "user_password" with ""
@@ -22,10 +24,11 @@ Feature: Login
     And I press "Register"
     Then I should see "Email is too short"
     And I should see "Password is too short"
-    And I should not see "Welcome"
+    And I should not see "Added user"
 
   Scenario: Try to register an user that already exists
-    Given I am on the root page
+    Given I am logged in
+    And I am on the root page
     And there is an user registered as "my@email.com"
     When I follow "Register"
     And I fill in "user_email" with "my@email.com"
