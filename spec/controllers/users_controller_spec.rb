@@ -19,7 +19,7 @@ describe UsersController do
     post 'create'
     assigns[:user].should == @user
     response.should redirect_to(root_path)
-    flash[:notice].should == "Welcome, #{@user.email}"
+    flash[:notice].should == "Added user #{@user.email}"
   end
   it "should not save an invalid user" do
     User.should_receive(:new).once.with(params[:user]).and_return(@user)
