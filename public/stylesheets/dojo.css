@@ -220,3 +220,10 @@ body {
 #past_dojos div.retrospective span.value {
   font-size: 1.1em;
 }
+
+#ft {
+  background: transparent url("../images/footer.png") no-repeat top center;
+  height: 36px;
+  color: white;
+  padding: 7px 15px;
+}
