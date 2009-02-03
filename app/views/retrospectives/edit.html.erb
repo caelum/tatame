@@ -1,6 +1,7 @@
 <p>Date: <%=h show_date(@dojo.date) %></p>
 <% form_for @retrospective, :url => { :action => "update" } do |f| -%>
   <% @participants.each do |p| %>
+    <%= check_box_tag "participants[]", value=p.id, checked=p.was_present?, :id => p.name %>
     <%= f.label p.name %>
     <br>
   <% end %>

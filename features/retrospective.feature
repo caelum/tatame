@@ -75,4 +75,15 @@ Feature: Retrospective
   
   Scenario: Subscribe new participants in retrospective edit page
   
-  Scenario: Confirm presence of subscribe participants in perspective edit page
+  Scenario: Confirm presence of subscribed participants in retrospective edit page
+    Given I am logged in
+    And there are 1 past dojos
+    And the dojo 1 days past has 3 participants
+    And I am on the root page
+    When I follow "add_retrospective_1st"
+    And I check "Participant 1"
+    And I check "Participant 3"
+    And I press "Save"
+    Then I should see "Participant 1"
+    And I should see "Participant 3"
+    And I should not see "Participant 2"
