@@ -10,5 +10,7 @@ class AddDefaultUser < ActiveRecord::Migration
   end
 
   def self.down
+    user = User.find :first, :conditions => ["email = 'dojoroot@caelum.com.br'"]
+    user.destroy
   end
 end
