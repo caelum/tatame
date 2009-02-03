@@ -81,13 +81,7 @@
             <% else %>
               <ul class="fields">
                 <li><span class="field participants">Participants: </span><span class="value">
-                <%
-                present_participants = []
-                dojo.participants.each do |p|
-                  present_participants << p.name if p.was_present
-                end 
-                %>
-                <%= present_participants.join(", ") %>
+                <%= dojo.participants.select(&:was_present?).collect(&:name).join(", ") %>
                 </span></li>
                 <li><span class="field problem">Problem: </span><span class="value"><%= dojo.retrospective.problem %></span></li>
                 <li><span class="field code">Code: </span><span class="value"><%= dojo.retrospective.code %></span></li>
