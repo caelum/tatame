@@ -4,7 +4,8 @@ class RetrospectivesController < ApplicationController
   def edit
     @retrospective = Retrospective.find(:first, :conditions => ["dojo_id = ?", params[:dojo_id]])
     @dojo = Dojo.find(params[:dojo_id])
-    @participants = Participant.find(:all, :conditions => ["dojo_id = ?", params[:dojo_id]]) 
+    @participants = Participant.find(:all, :conditions => ["dojo_id = ?", params[:dojo_id]])
+    @participant = Participant.new 
   end
   
   def update

@@ -1,10 +1,5 @@
 <p>Date: <%=h show_date(@dojo.date) %></p>
 <% form_for @retrospective, :url => { :action => "update" } do |f| -%>
-  <% @participants.each do |p| %>
-    <%= check_box_tag "participants[]", value=p.id, checked=p.was_present?, :id => p.name %>
-    <%= f.label p.name %>
-    <br>
-  <% end %>
   <%= f.label :dojo_title %><br/>
   <%= f.text_field :dojo_title %><br/>
   <%= f.label :problem %><br/>
@@ -17,6 +12,23 @@
   <%= f.text_area :retrospective, :cols => 60, :rows => 10 %><br/>
   <%= f.label :parking_lot %><br/>
   <%= f.text_area :parking_lot, :cols => 60, :rows => 10 %><br/>
+  <% @participants.each do |p| %>
+    <%= check_box_tag "participants[]", value=p.id, checked=p.was_present?, :id => p.name %>
+    <%= f.label p.name %>
+    <br>
+  <% end %>
   <%= f.submit "Save", :disable_with => 'Saving...' %>
 <% end -%>
+
+<div>
+  <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
+    <span class="field">
+    	Add participant: 
+    	<%= f.text_field :name %>
+  	</span>
+  	<%= submit_tag 'Add', :id => "add_participant" %>
+  <% end %>
+</div>
+
+
 <%= link_to "Back", root_path %>

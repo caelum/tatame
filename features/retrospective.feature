@@ -74,6 +74,14 @@ Feature: Retrospective
     Then I should see "Participant 3"
   
   Scenario: Subscribe new participants in retrospective edit page
+    Given I am logged in
+    And there are 1 past dojos
+    And the dojo 1 days past has 3 participants
+    And I am on the root page
+    When I follow "add_retrospective_1st"
+    And I fill in "participant_name" with "Plutarco"
+    And I press "Add"
+    Then I should see "Plutarco"
   
   Scenario: Confirm presence of subscribed participants in retrospective edit page
     Given I am logged in
