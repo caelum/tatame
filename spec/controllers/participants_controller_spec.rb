@@ -5,7 +5,7 @@ describe ParticipantsController do
     @participant = mock_model(Participant)
   end
   
-  it "should save the participant and redirect to root_url" do
+  it "should save the participant" do
     Participant.should_receive(:new).once.and_return(@participant)
     @participant.should_receive(:dojo_id=).once
     @participant.should_receive(:name).once
@@ -25,7 +25,7 @@ describe ParticipantsController do
     response.should redirect_to(root_url)
   end
   
-  it "should go back to the root page on validation errors" do
+  it "should fail on validation errors" do
     Participant.should_receive(:new).once.and_return(@participant)
     @participant.should_receive(:dojo_id=).once
     @participant.should_receive(:save).once.and_return(false)

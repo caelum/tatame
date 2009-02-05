@@ -81,7 +81,7 @@ Feature: Retrospective
     When I follow "add_retrospective_1st"
     And I fill in "participant_name" with "Plutarco"
     And I press "Add"
-    Then I should see "Plutarco"
+    Then I should see "Successfully added participant Plutarco"
   
   Scenario: Confirm presence of subscribed participants in retrospective edit page
     Given I am logged in

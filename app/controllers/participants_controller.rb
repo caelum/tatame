@@ -7,7 +7,8 @@ class ParticipantsController < ApplicationController
     else
       flash[:notice] = "Empty name"
     end
-    redirect_to root_url
+    redirect_url = request.env['HTTP_REFERER'] || root_url
+    redirect_to redirect_url
   end
   
   def destroy
