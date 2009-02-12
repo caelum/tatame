@@ -30,3 +30,8 @@ Scenario: Remove a name
   When I follow "remove_Caue"
   Then I should not see "remove_Caue"
   And I should see "Successfully removed participant Caue"
+
+Scenario: Can't add a participant if there isn't a next dojo scheduled
+  Given there is no scheduled dojo
+  And I am on the root page
+  Then I should not see "add_participant"
