@@ -7,3 +7,7 @@ features_rcov
 coverage
 doc/rspec_results.html
 *.swp
+.buildpath
+.project
+set-gempath.sh
+

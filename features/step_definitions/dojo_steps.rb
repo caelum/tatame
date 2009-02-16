@@ -72,7 +72,7 @@ end
 
 Then /^the next dojo should be in (\d+) days$/ do |n|
   response.should have_tag("div#next") do
-    date = (today + n.to_i.days).strftime("%Y-%m-%d - %H:%M")
+    date = (today + n.to_i.days).strftime("%d-%m-%Y - %H:%M")
     with_tag("span.date", "#{date}")
   end
 end
@@ -86,7 +86,7 @@ end
 Then /^I should see a dojo in (\d+) days inside the schedule tag$/ do |n|
   response.should have_tag("div#schedule") do
     with_tag("ol") do
-      date = (today + n.to_i.days).strftime("%Y-%m-%d - %H:%M")
+      date = (today + n.to_i.days).strftime("%d-%m-%Y - %H:%M")
       with_tag("li") do
         with_tag("span.date", "#{date}")
       end
@@ -97,7 +97,7 @@ end
 Then /^I should see a dojo (\d+) days past$/ do |n|
   response.should have_tag("div#past_dojos") do
     with_tag("ol") do
-      date = (today - n.to_i.days).strftime("%Y-%m-%d - %H:%M")
+      date = (today - n.to_i.days).strftime("%d-%m-%Y - %H:%M")
       with_tag("li") do
         with_tag("span.date", "#{date}")
       end

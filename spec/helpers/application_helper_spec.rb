@@ -5,6 +5,6 @@ describe ApplicationHelper do
  
   it "should format date" do
     date = Time.now
-    show_date(date).should == date.strftime("%Y-%m-%d - %H:%M")
+    show_date(date).should == date.strftime("%d-%m-%Y - %H:%M")
   end
 end
