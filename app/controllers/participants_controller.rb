@@ -5,7 +5,7 @@ class ParticipantsController < ApplicationController
     if @participant.save
       flash[:notice] = "Successfully added participant #{@participant.name}"
     else
-      flash[:notice] = "Empty name"
+    flash[:notice] = "Empty name"
     end
     redirect_url = request.env['HTTP_REFERER'] || root_url
     redirect_to redirect_url

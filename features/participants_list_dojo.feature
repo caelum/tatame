@@ -22,6 +22,13 @@ Scenario: Add with no name
   Then I should see an empty presence list
   And I should see "Empty name"
 
+Scenario: Add with default name
+  Given there are 1 dojos scheduled starting in 1 days
+  And I am on the root page
+  When I press "add_participant"
+  Then I should see an empty presence list
+  And I should see "Empty name"
+
 Scenario: Remove a name
   Given there are 1 dojos scheduled starting in 1 days
   And I am on the root page

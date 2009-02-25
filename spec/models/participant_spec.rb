@@ -27,6 +27,15 @@ describe Participant do
     @participant.name = "caue"
     @participant.should be_valid
   end
+
+  it "should require a valid name" do
+    @participant.attributes = valid_participant_attributes.except(:name)
+    @participant.name = 'Nome'
+    @participant.should_not be_valid
+    @participant.errors.on(:name).should include("invalid")
+    @participant.name = "caue"
+    @participant.should be_valid
+ end
   
   it "should require dojo_id" do
     @participant.attributes = valid_participant_attributes.except(:dojo_id)
