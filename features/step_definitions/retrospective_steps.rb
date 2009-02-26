@@ -15,7 +15,8 @@ Given /^the dojo (\d+) days past has (\d+) participants$/ do |n, p|
     mp = Participant.new
     mp.name = "Participant #{i+1}"
     mp.dojo_id = id
-    mp.save  end  
+    mp.save
+  end  
   Retrospective.transaction do
     dojo.retrospective.save
   end
@@ -25,7 +26,7 @@ Then /^I should see a dojo (\d+) days past with retrospective$/ do |n|
   retrospectives = Retrospective.find(:all)
   possible_dojos = []
   dojo_date = today - n.to_i.days
-  date = dojo_date.strftime "%Y-%m-%d - %H:%M"
+  date = dojo_date.strftime "%d-%m-%Y - %H:%M"
   retrospectives.each do |retro|
     if !retro.blank? && retro.dojo.date == dojo_date
       possible_dojos << retro.dojo
