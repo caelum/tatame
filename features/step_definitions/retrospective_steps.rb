@@ -15,7 +15,8 @@ Given /^the dojo (\d+) days past has (\d+) participants$/ do |n, p|
     mp = Participant.new
     mp.name = "Participant #{i+1}"
     mp.dojo_id = id
-    mp.save  end  
+    mp.save
+  end  
   Retrospective.transaction do
     dojo.retrospective.save
   end

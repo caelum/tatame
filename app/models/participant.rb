@@ -5,4 +5,8 @@ class Participant < ActiveRecord::Base
   validates_numericality_of :dojo_id
   
   default_value_for :name, 'Nome'
+
+  def validate
+    errors.add :name, "'Nome' is an invalid name" if name == "Nome"
+  end
 end
