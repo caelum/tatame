@@ -16,4 +16,8 @@ class Dojo < ActiveRecord::Base
      
      date = date + 7.days
   end
+
+  def block_list?
+    Time.now > block_list_date
+  end
 end

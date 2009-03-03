@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 module DojoSpecHelper
   def valid_dojo_attributes
     { :date => Time.now + 1.days,
+      :block_list_date => Time.now + 1.days,
       :comment => "This is a test" }
   end
 end
@@ -86,4 +87,17 @@ describe Dojo do
   it "should relate to a retrospective" do
     Dojo.reflect_on_association(:retrospective).should_not be_nil
   end
+
+  it "should block its participant list when the block list date and time is before now" do
+    @dojo.attributes = valid_dojo_attributes
+    @date.should_receive(:>).with(@date).and_return true
+    @dojo.block_list?.should be_true
+  end
+
+  it "should not block its participant list when the block list date and time is after now" do
+    @dojo.attributes = valid_dojo_attributes
+    @date.should_receive(:>).with(@date).and_return false
+    @dojo.block_list?.should_not be_true
+  end
+
 end

@@ -10,7 +10,8 @@ Given /there are (\d+) dojos scheduled starting in ([-]{0,1}\d+) days/ do |n, of
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => today + (n.to_i + offset.to_i).days, :retrospective => Retrospective.new
+      next_date = today + (n.to_i + offset.to_i).days
+      Dojo.create! :date => next_date, :retrospective => Retrospective.new, :block_list_date => next_date
     end
   end
 end
@@ -19,7 +20,8 @@ Given /there are (\d+) past dojos/ do |n|
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => today - (1 + n.to_i).days, :retrospective => Retrospective.new
+      date = today - (1 + n.to_i).days
+      Dojo.create! :date => date, :retrospective => Retrospective.new, :block_list_date => date
     end
   end
 end
@@ -107,6 +109,10 @@ end
 
 Then /^I should see a box to put my name$/ do
   response.should have_tag("#participant_name")
+end
+
+Then /^I should not see a box to put my name$/ do
+  response.should_not have_tag("#participant_name")
 end
 
 def today
