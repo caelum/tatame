@@ -55,7 +55,7 @@
 	  <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
 	    <h2>Confirme sua presen&ccedil;a</h2>
 	    <span class="field">
-	    	<%= f.text_field :name, :class => 'name' %>
+        <%= f.text_field :name, :class => 'name' %>
 	  	</span>
 	  	<%= image_submit_tag 'botao-ok.png', :id => "add_participant" , :class => 'button' %>
 	  <% end %>

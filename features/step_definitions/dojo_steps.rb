@@ -35,9 +35,9 @@ When /I delete the first dojo/ do
   clicks_link "Destroy"
 end
 
-When /^I select ([-]{0,1}\d+) days from now as the date and time$/ do |n|
+When /^I select ([-]{0,1}\d+) days from now as the date and time for "(.*)"$/ do |n, property|
   datetime = today + n.to_i.days
-  select_datetime(datetime)
+  select_datetime(datetime, :from => property)
 end
 
 When /^I am on the root page$/ do
@@ -103,6 +103,10 @@ Then /^I should see a dojo (\d+) days past$/ do |n|
       end
     end
   end
+end
+
+Then /^I should see a box to put my name$/ do
+  response.should have_tag("#participant_name")
 end
 
 def today
