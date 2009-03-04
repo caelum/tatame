@@ -22,6 +22,6 @@ class Dojo < ActiveRecord::Base
   end
 
   def block_list?
-    Time.now > block_list_date
+    Time.now > block_list_date && Time.now < date
   end
 end
