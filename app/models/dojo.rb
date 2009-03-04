@@ -3,6 +3,7 @@ class Dojo < ActiveRecord::Base
   has_one :retrospective
   
   validates_presence_of :date
+  validates_presence_of :block_list_date
 
   def self.next
     Dojo.find :first, :conditions => ["date > ?", Time.now], :order => "date ASC"

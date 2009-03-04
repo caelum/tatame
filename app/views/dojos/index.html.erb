@@ -55,7 +55,7 @@
 <% if (@dojo) %>
   <div class="confirmation">
     <% if @dojo.block_list? %>
-      <h2>The participant list for the next Dojo is blocked</h2>
+      <form><h2 class="info">The participant list for the next Dojo is blocked</h2></form>
     <% else %>
       <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
         <h2>Confirme sua presen&ccedil;a</h2>

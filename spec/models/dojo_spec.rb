@@ -72,6 +72,14 @@ describe Dojo do
     @dojo.date = Time.now + 1.days
     @dojo.should be_valid
   end
+
+  it "should require a block list date" do
+    @dojo.attributes = valid_dojo_attributes.except :block_list_date
+    @dojo.should_not be_valid
+    @dojo.errors.on(:block_list_date).should include("can't be blank")
+    @dojo.block_list_date = Time.now + 1.days
+    @dojo.should be_valid
+  end
   
   it "should relate to participants" do
     Dojo.reflect_on_association(:participants).should_not be_nil
