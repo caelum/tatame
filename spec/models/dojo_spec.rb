@@ -100,4 +100,21 @@ describe Dojo do
     @dojo.block_list?.should_not be_true
   end
 
+  it "should return the next dojo when there is a dojo scheduled" do
+    Dojo.should_receive(:find) do |*args|
+      options = args.pop
+      options.should_not be_nil
+      options.should be_kind_of(Hash)
+      options.should have_key(:conditions)
+      options[:conditions].should be_kind_of(Array)
+      options[:conditions][0].should == "date > ?"
+      options[:conditions][1].should == Time.now
+      options.should have_key(:order)
+      options[:order].should == "date ASC"
+      @dojo
+    end
+
+    Dojo.next.should == @dojo
+  end
+
 end

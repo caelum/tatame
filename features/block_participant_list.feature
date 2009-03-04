@@ -24,3 +24,11 @@ I want to block the participants list some time before the dojo starts
     And I should not see a box to put my name
     And I should see "Successfully created"
     And I should see "The participant list for the next Dojo is blocked"
+
+  Scenario: Cannot remove participants from list when it's blocked
+    Given there are 1 dojos scheduled starting in 1 days
+    And the participant "Luiz" has confirmed his/her presence to the next Dojo
+    And the participant list is blocked
+    And I am on the root page
+    Then I should see "Luiz"
+    And I should not see "remove_Luiz"

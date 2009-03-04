@@ -32,6 +32,19 @@ Given /^there is no scheduled dojo$/ do
   end
 end
 
+Given %r{^the participant "(.*)" has confirmed his/her presence to the next Dojo$} do |name|
+  visit "/"
+  fill_in "participant_name", :with => name
+  click_button "add_participant"
+end
+
+Given /^the participant list is blocked$/ do
+  Dojo.transaction do
+    dojo = Dojo.next
+    dojo.update_attributes :block_list_date => today - 1.days
+  end
+end
+
 When /I delete the first dojo/ do
   visit dojos_url
   clicks_link "Destroy"

@@ -19,10 +19,12 @@
 			<ul>
 				<% @dojo.participants.each do |participant| -%>
 					<li>
-						<span class="name"><%=h participant.name %></span>
-						<%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
-						            :confirm => 'Are you sure?', :method => :delete, 
-						            :id => "remove_#{participant.name}" %>
+            <span class="name"><%=h participant.name %></span>
+            <% unless @dojo.block_list? %>
+              <%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
+                          :confirm => 'Are you sure?', :method => :delete, 
+                          :id => "remove_#{participant.name}" %>
+            <% end %>
 					</li>
 				<% end -%>
 			</ul>

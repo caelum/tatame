@@ -32,8 +32,7 @@ Scenario: Add with default name
 Scenario: Remove a name
   Given there are 1 dojos scheduled starting in 1 days
   And I am on the root page
-  And I fill in "participant_name" with "Caue"
-  And I press "add_participant"
+  And the participant "Caue" has confirmed his/her presence to the next Dojo
   When I follow "remove_Caue"
   Then I should not see "remove_Caue"
   And I should see "Successfully removed participant Caue"
@@ -41,4 +40,4 @@ Scenario: Remove a name
 Scenario: Can't add a participant if there isn't a next dojo scheduled
   Given there is no scheduled dojo
   And I am on the root page
-  Then I should not see "add_participant"
+  Then I should not see a box to put my name
