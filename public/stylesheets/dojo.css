@@ -114,6 +114,12 @@ body {
   margin: 0 0 0 8px;
 }
 
+.confirmation h2.info {
+  text-indent: 0px;
+  padding: 70px 15px 0;
+  font-size: 1.3em;
+}
+
 .confirmation form {
   padding: 13px 30px 20px 30px;
   background: transparent url("../images/box-amarelo_esquerdo.png") no-repeat top left;

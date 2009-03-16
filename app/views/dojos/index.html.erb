@@ -19,10 +19,12 @@
 			<ul>
 				<% @dojo.participants.each do |participant| -%>
 					<li>
-						<span class="name"><%=h participant.name %></span>
-						<%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
-						            :confirm => 'Are you sure?', :method => :delete, 
-						            :id => "remove_#{participant.name}" %>
+            <span class="name"><%=h participant.name %></span>
+            <% unless @dojo.block_list? %>
+              <%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
+                          :confirm => 'Are you sure?', :method => :delete, 
+                          :id => "remove_#{participant.name}" %>
+            <% end %>
 					</li>
 				<% end -%>
 			</ul>
@@ -51,14 +53,18 @@
 <% end -%>
 
 <% if (@dojo) %>
-	<div class="confirmation">
-	  <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
-	    <h2>Confirme sua presen&ccedil;a</h2>
-	    <span class="field">
-	    	<%= f.text_field :name, :class => 'name' %>
-	  	</span>
-	  	<%= image_submit_tag 'botao-ok.png', :id => "add_participant" , :class => 'button' %>
-	  <% end %>
+  <div class="confirmation">
+    <% if @dojo.block_list? %>
+      <form><h2 class="info">The participant list for the next Dojo is blocked</h2></form>
+    <% else %>
+      <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
+        <h2>Confirme sua presen&ccedil;a</h2>
+        <span class="field">
+          <%= f.text_field :name, :class => 'name' %>
+        </span>
+        <%= image_submit_tag 'botao-ok.png', :id => "add_participant" , :class => 'button' %>
+      <% end %>
+    <% end %>
 	</div>
 <% end %>
 

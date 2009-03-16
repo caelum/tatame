@@ -10,7 +10,8 @@ Given /there are (\d+) dojos scheduled starting in ([-]{0,1}\d+) days/ do |n, of
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => today + (n.to_i + offset.to_i).days, :retrospective => Retrospective.new
+      next_date = today + (n.to_i + offset.to_i).days
+      Dojo.create! :date => next_date, :retrospective => Retrospective.new, :block_list_date => next_date
     end
   end
 end
@@ -19,7 +20,8 @@ Given /there are (\d+) past dojos/ do |n|
   Dojo.transaction do
     Dojo.destroy_all
     n.to_i.times do |n|
-      Dojo.create! :date => today - (1 + n.to_i).days, :retrospective => Retrospective.new
+      date = today - (1 + n.to_i).days
+      Dojo.create! :date => date, :retrospective => Retrospective.new, :block_list_date => date
     end
   end
 end
@@ -30,14 +32,27 @@ Given /^there is no scheduled dojo$/ do
   end
 end
 
+Given %r{^the participant "(.*)" has confirmed his/her presence to the next Dojo$} do |name|
+  visit "/"
+  fill_in "participant_name", :with => name
+  click_button "add_participant"
+end
+
+Given /^the participant list is blocked$/ do
+  Dojo.transaction do
+    dojo = Dojo.next
+    dojo.update_attributes :block_list_date => today - 1.days
+  end
+end
+
 When /I delete the first dojo/ do
   visit dojos_url
   clicks_link "Destroy"
 end
 
-When /^I select ([-]{0,1}\d+) days from now as the date and time$/ do |n|
+When /^I select ([-]{0,1}\d+) days from now as the date and time for "(.*)"$/ do |n, property|
   datetime = today + n.to_i.days
-  select_datetime(datetime)
+  select_datetime(datetime, :from => property)
 end
 
 When /^I am on the root page$/ do
@@ -103,6 +118,14 @@ Then /^I should see a dojo (\d+) days past$/ do |n|
       end
     end
   end
+end
+
+Then /^I should see a box to put my name$/ do
+  response.should have_tag("#participant_name")
+end
+
+Then /^I should not see a box to put my name$/ do
+  response.should_not have_tag("#participant_name")
 end
 
 def today
