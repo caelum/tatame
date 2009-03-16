@@ -57,6 +57,6 @@ Scenario: Can't remove a name when not logged in
   Given I am logged in
   And there are 1 dojos scheduled starting in 1 days
   And the participant "Caue" has confirmed his/her presence to the next Dojo
-  And I am not logged in
   And I am on the root page
+  When I follow "Logout"
   Then I should not see "remove_Caue"

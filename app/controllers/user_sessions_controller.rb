@@ -9,4 +9,11 @@ class UserSessionsController < ApplicationController
     end
     redirect_to :back
   end
+  
+  def destroy
+    user_session = current_user_session
+    user_session.destroy unless user_session == nil
+    flash[:notice] = "You have logged out"
+    redirect_to root_url
+  end
 end

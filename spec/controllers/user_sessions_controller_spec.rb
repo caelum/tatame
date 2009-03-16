@@ -24,4 +24,11 @@ describe UserSessionsController do
     assigns[:user_session].should == @user_session
     response.should redirect_to(:back)
   end
+  
+  it "should loggout when logged in" do
+    UserSession.stub!(:find).and_return(@user_session)
+    @user_session.should_receive(:destroy).once
+    
+    post 'destroy'
+    response.should redirect_to(root_url)  end
 end

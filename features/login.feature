@@ -63,3 +63,15 @@ Feature: Login
     When I fill in "user_session_password" with "obviouslyincorrectpassword"
     And I press "Login"
     Then I should see "Login failed"
+  
+  Scenario: Logout when logged in
+  	Given I am logged in
+  	And I am on the root page
+  	When I follow "Logout"
+  	Then I should see "user_session_email"
+  	And I should see "user_session_password"
+  
+  Scenario: Can't logout if not logged in
+  	Given I am not logged in
+  	And I am on the root page
+  	Then I should not see "Logout"
