@@ -1,4 +1,6 @@
-class ParticipantsController < ApplicationController
+class ParticipantsController < ApplicationController 
+  before_filter :require_login
+  
   def create
     dojo = Dojo.find params[:dojo_id]
     if dojo.block_list?

@@ -26,6 +26,7 @@ I want to block the participants list some time before the dojo starts
     And I should see "The participant list for the next Dojo is blocked"
 
   Scenario: Cannot remove participants from list when it's blocked
+    Given I am logged in
     Given there are 1 dojos scheduled starting in 1 days
     And the participant "Luiz" has confirmed his/her presence to the next Dojo
     And the participant list is blocked

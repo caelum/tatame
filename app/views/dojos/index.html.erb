@@ -20,7 +20,7 @@
 				<% @dojo.participants.each do |participant| -%>
 					<li>
             <span class="name"><%=h participant.name %></span>
-            <% unless @dojo.block_list? %>
+            <% unless @dojo.block_list? or not current_user %>
               <%= link_to image_tag('cross.png'), dojo_participant_path(@dojo,participant), 
                           :confirm => 'Are you sure?', :method => :delete, 
                           :id => "remove_#{participant.name}" %>
@@ -56,6 +56,8 @@
   <div class="confirmation">
     <% if @dojo.block_list? %>
       <form><h2 class="info">The participant list for the next Dojo is blocked</h2></form>
+	<% elsif not current_user%>
+	  <form><h2 class="info">You must be logged in to add a participant</h2></form>
     <% else %>
       <% form_for @participant, :url => dojo_participants_path(@dojo) do |f| %>
         <h2>Confirme sua presen&ccedil;a</h2>
