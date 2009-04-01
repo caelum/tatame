@@ -12,12 +12,20 @@ Feature: Prepared katas
     And I fill in "description" with "The famous problem"
     And I fill in "language" with "Haskell"
     And I press "Add"
-    Then I should see "Rubik's Cube"
-    And I should see "The famous problem"
-    And I should see "Haskell"
-    And I should see my login in the kata's list
+    Then I should see the kata "Rubik's Cube" by "me" in "Haskell"
 
   Scenario: Add a kata when there is already a kata
+    Given I am on the root page
+    And I am logged in 
+    And there is a kata created by "me@myself.com" with title "Large Prime Factorization" in the language "LISP"
+    When I follow "Katas"
+    And I follow "New"
+    And I fill in "title" with "Rubik's Cube"
+    And I fill in "description" with "The famous problem"
+    And I fill in "language" with "Haskell"
+    And I press "Add"
+    Then I should see the kata "Rubik's Cube" by "me" in "Haskell"
+    And I should see the kata "Large Prime Factorization" by "me@myself.com" in "LISP"
 
   Scenario: Remove a kata when there is only one kata
 
