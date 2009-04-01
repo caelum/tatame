@@ -29,8 +29,6 @@ describe Dojo do
       options[:conditions].should be_kind_of(Array)
       options[:conditions][0].should == "date > ?"
       options[:conditions][1].should == Time.now - 7.days
-      options.shift
-      options.should be_kind_of(Hash)
       options.should have_key(:order)
       options[:order].should == "date DESC"
       nil

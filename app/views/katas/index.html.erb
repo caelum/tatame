@@ -1,0 +1,25 @@
+<div id="katas">
+<% unless @katas.blank? -%>
+  <% @katas.each_with_index do |kata, i| -%>
+    <div class="kata">
+      <h2><%=h kata.title %></h2>
+      <p class="language">Language: <%=h kata.language %></p>
+      <p class="author">Author: <%=h kata.author.email %></p>
+      <p>
+        <%= kata.description %>
+      </p>
+      <span class="edit">
+        <%= link_to 'Alterar', edit_kata_path(kata), :id => "edit_#{(i+1).ordinalize}" %>
+      </span> | 
+      <span class="delete">
+        <%= link_to 'Remover', kata, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{(i+1).ordinalize}" %>
+      </span>
+    </div>
+  <% end -%>
+<% else -%>
+  No prepared katas.
+<% end -%>
+</div>
+<p>
+  <%= link_to 'New', new_kata_path %>
+</p>

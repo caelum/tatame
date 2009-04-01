@@ -1,0 +1,13 @@
+<%= error_messages_for :kata %>
+
+<% form_for @kata, :url => {:action => :update, :id => @kata} do |f| -%>
+  <%= f.label :title %><br/>
+  <%= f.text_field :title %><br/>
+  <br/>
+   <%= f.label :language %><br/>
+  <%= f.text_field :language %><br/>
+  <br/>
+  <%= f.label :description %>
+  <%= f.text_area :description %><br/>
+  <%= f.submit "Save" %>
+<% end -%>
