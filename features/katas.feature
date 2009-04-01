@@ -90,7 +90,22 @@ Feature: Prepared katas
     Then I should see "Language can't be blank"
 
   Scenario: Try to add a prepared kata not being logged in
+    Given I am not logged in
+    And I am on the katas page
+    When I follow "New"
+    Then I should see "You must be logged in to do this"
 
   Scenario: Try to delete a kata not being logged in
+    Given I am not logged in
+    And there is a kata created by "me@myself.com" with title "Rubik's Cube" in the language "Haskell"
+    And I am on the katas page
+    When I follow "delete_1st"
+    Then I should see "You must be logged in to do this"
   
   Scenario: Try to edit a kata not being logged in
+    Given I am not logged in
+    And there is a kata created by "me@myself.com" with title "Rubik's Cube" in the language "Haskell"
+    And I am on the katas page
+    When I follow "edit_1st"
+    Then I should see "You must be logged in to do this"
+
