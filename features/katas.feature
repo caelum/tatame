@@ -54,10 +54,40 @@ Feature: Prepared katas
     And I should not see "Haskell"
 
   Scenario: Create a kata without title
+    Given I am logged in 
+    And I am on the katas page
+    When I follow "New"
+    And I fill in "description" with "The famous problem"
+    And I fill in "language" with "Haskell"
+    And I press "Add"
+    Then I should see "Title can't be blank"
 
   Scenario: Create a kata without language
+    Given I am logged in 
+    And I am on the katas page
+    When I follow "New"
+    And I fill in "title" with "Rubik's Cube"
+    And I fill in "description" with "The famous problem"
+    And I press "Add"
+    Then I should see "Language can't be blank"
 
   Scenario: Remove the title of an existing kata
+    Given I am logged in
+    And there is a kata created by "me" with title "Rubik's Cube" in the language "Haskell"
+    And I am on the katas page
+    When I follow "edit_1st"
+    And I fill in "title" with ""
+    And I press "Save"
+    Then I should see "Title can't be blank"
+
+  Scenario: Remove the language of an existing kata
+    Given I am logged in
+    And there is a kata created by "me" with title "Rubik's Cube" in the language "Haskell"
+    And I am on the katas page
+    When I follow "edit_1st"
+    And I fill in "language" with ""
+    And I press "Save"
+    Then I should see "Language can't be blank"
 
   Scenario: Try to add a prepared kata not being logged in
 
