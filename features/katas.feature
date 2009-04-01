@@ -35,6 +35,13 @@ Feature: Prepared katas
     Then I should see "No prepared katas"
 
   Scenario: Remove a kata when there are more katas
+    Given I am logged in
+    And there is a kata created by "me" with title "Rubik's Cube" in the language "Haskell"
+    And there is a kata created by "me@myself.com" with title "Large Prime Factorization" in the language "LISP"
+    And I am on the katas page
+    When I follow "delete_2nd"
+    Then I should see "Rubik's Cube"
+    And I should not see "Large Prime Factorization"
 
   Scenario: Edit a kata
 
