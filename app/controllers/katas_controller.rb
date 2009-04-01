@@ -19,4 +19,11 @@ class KatasController < ApplicationController
       render :action => :new
     end
   end
+  
+  def destroy
+    @kata = Kata.find(params[:id])
+    @kata.destroy
+
+    redirect_to katas_path
+  end
 end

@@ -28,6 +28,11 @@ Feature: Prepared katas
     And I should see the kata "Large Prime Factorization" by "me@myself.com" in "LISP"
 
   Scenario: Remove a kata when there is only one kata
+    Given I am logged in
+    And there is a kata created by "me" with title "Rubik's Cube" in the language "Haskell"
+    And I am on the katas page
+    When I follow "delete_1st"
+    Then I should see "No prepared katas"
 
   Scenario: Remove a kata when there are more katas
 

@@ -12,6 +12,7 @@
         <%= link_to 'Alterar', edit_randori_path(kata), :id => "edit_#{(i+1).ordinalize}" %>
       </span> | 
       <span class="delete">
+        <%= link_to 'Remover', kata, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{(i+1).ordinalize}" %>
       </span>
     </div>
   <% end -%>

@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :randoris, :except => [:show]
-  map.resources :katas, :only => [:index, :new, :create]
+  map.resources :katas, :only => [:index, :new, :create, :destroy]
   map.resources :users, :only => [:new, :create]
   map.resource :user_session, :only => [:create, :destroy]
   

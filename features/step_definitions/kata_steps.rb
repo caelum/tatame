@@ -9,6 +9,10 @@ Given /^there is a kata created by "(.*)" with title "(.*)" in the language "(.*
   end
 end
 
+Given /^I am on the katas page$/ do
+  visit '/katas'
+end
+
 Then /^I should see the kata "(.*)" by "(.*)" in "(.*)"$/ do |title, author, language|
   author = current_user.email if author == "me"
   response.should have_tag("div#katas .kata") do
