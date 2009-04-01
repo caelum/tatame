@@ -9,7 +9,7 @@
         <%= kata.description %>
       </p>
       <span class="edit">
-        <%= link_to 'Alterar', edit_randori_path(kata), :id => "edit_#{(i+1).ordinalize}" %>
+        <%= link_to 'Alterar', edit_kata_path(kata), :id => "edit_#{(i+1).ordinalize}" %>
       </span> | 
       <span class="delete">
         <%= link_to 'Remover', kata, :confirm => 'Are you sure?', :method => :delete, :id => "delete_#{(i+1).ordinalize}" %>

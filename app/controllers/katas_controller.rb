@@ -25,5 +25,19 @@ class KatasController < ApplicationController
     @kata.destroy
 
     redirect_to katas_path
+  end 
+  
+  def edit
+    @kata = Kata.find(params[:id])
   end
+  
+  def update
+    @kata = Kata.find(params[:id])
+    if @kata.update_attributes(params[:kata])
+      redirect_to katas_path
+    else
+      render :action => :edit
+    end
+  end
+
 end

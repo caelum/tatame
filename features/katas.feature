@@ -43,7 +43,15 @@ Feature: Prepared katas
     Then I should see "Rubik's Cube"
     And I should not see "Large Prime Factorization"
 
-  Scenario: Edit a kata
+  Scenario: Edit a kata created by me
+    Given I am logged in
+    And there is a kata created by "me" with title "Rubik's Cube" in the language "Haskell"
+    And I am on the katas page
+    When I follow "edit_1st"
+    And I fill in "language" with "Prolog"
+    And I press "Save"
+    Then I should see the kata "Rubik's Cube" by "me" in "Prolog"
+    And I should not see "Haskell"
 
   Scenario: Create a kata without title
 

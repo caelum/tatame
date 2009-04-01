@@ -59,7 +59,7 @@ describe KatasController do
     response.should redirect_to(katas_path)
   end
 
-  it "should not delete a randori if not logged in" do
+  it "should not delete a kata if not logged in" do
     UserSession.stub!(:find).and_return nil
 
     post 'destroy'
@@ -67,38 +67,38 @@ describe KatasController do
     flash[:notice].should include("must be logged in")
   end
   
-#  it "should edit a randori if logged in" do
-#    Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
-#    UserSession.stub!(:find).and_return @user_session
-#
-#    get 'edit'
-#    assigns[:randori].should equal(@randori)
-#  end
+  it "should edit a kata if logged in" do
+    Kata.should_receive(:find).once.with(params[:id]).and_return(@kata)
+    UserSession.stub!(:find).and_return @user_session
 
-#  it "should not edit a randori when not logged in" do
-#    UserSession.stub!(:find).and_return nil
-#
-#    get 'edit'
-#    response.should redirect_to(root_path)
-#    flash[:notice].should include("must be logged in")
-#  end
+    get 'edit'
+    assigns[:kata].should equal(@kata)
+  end
+
+  it "should not edit a kata when not logged in" do
+    UserSession.stub!(:find).and_return nil
+
+    get 'edit'
+    response.should redirect_to(root_path)
+    flash[:notice].should include("must be logged in")
+  end
   
-#  it "should update a randori and redirect to the randoris page if logged in" do
-#    Randori.should_receive(:find).once.with(params[:id]).and_return(@randori)
-#    @randori.should_receive(:update_attributes).once.with(params[:randori]).and_return(true)
-#    UserSession.stub!(:find).and_return @user_session
-#
-#    put 'update'
-#    response.should redirect_to(randoris_path)
-#  end
+  it "should update a kata and redirect to the katas page if logged in" do
+    Kata.should_receive(:find).once.with(params[:id]).and_return(@kata)
+    @kata.should_receive(:update_attributes).once.with(params[:kata]).and_return(true)
+    UserSession.stub!(:find).and_return @user_session
 
-#  it "should not update a randori when not logged in" do
-#    UserSession.stub!(:find).and_return nil
-#
-#    put 'update'
-#    response.should redirect_to(root_path)
-#    flash[:notice].should include("must be logged in")
-#  end
+    put 'update'
+    response.should redirect_to(katas_path)
+  end
+
+  it "should not update a kata when not logged in" do
+    UserSession.stub!(:find).and_return nil
+
+    put 'update'
+    response.should redirect_to(root_path)
+    flash[:notice].should include("must be logged in")
+  end
 
 #  it "should return to the new page when creating an invalid randori" do
 #    Randori.should_receive(:new).once.with(params[:randori]).and_return(@randori)
