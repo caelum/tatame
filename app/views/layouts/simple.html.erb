@@ -15,7 +15,9 @@
   <div id="hd">
     <h1>Coding Dojo Caelum</h1>
     <% if current_user %>
-      <span id="login-message">Welcome, <%=h current_user.email %></span>
+      <span id="login-message">Welcome, <%=h current_user.email %>
+      	[ <%= link_to 'Logout', user_session_url, :method => :delete %> ]
+      </span>
     <% else %>
       <div id="login-form">
         <% form_tag user_session_url, :method => :post do -%>
