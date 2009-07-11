@@ -29,7 +29,7 @@ Rails::Initializer.run do |config|
   config.gem "sqlite3-ruby", :lib => "sqlite3"
   config.gem "aslakhellesoy-webrat", :source => "http://gems.github.com", :lib => "webrat"
   config.gem "spicycode-rcov", :source => "http://gems.github.com", :lib => "rcov"
-  config.gem "authlogic"
+  config.gem "authlogic", :version => '1.4.0'
 
   # if failing on osx: 
   # sudo gem install mysql -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
