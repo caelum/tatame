@@ -22,9 +22,9 @@ config.action_controller.allow_forgery_protection    = false
 config.action_mailer.delivery_method = :test
 
 # Loads RSpec-rails only in test environment (problems with Passenger)
-config.gem "rspec", :lib => "spec", :version => '1.1.12'
-config.gem "rspec-rails", :lib => "spec/rails", :version => '1.1.12'
+config.gem "rspec", :lib => "spec", :version => '1.2.6'
+config.gem "rspec-rails", :lib => "spec/rails", :version => '1.2.6'
 config.gem "sqlite3-ruby", :lib => "sqlite3", :version => '1.2.4'
 config.gem "spicycode-rcov", :source => "http://gems.github.com", :lib => "rcov", :version => '0.8.1.5.0'
-config.gem "cucumber", :version => '0.1.16'
+config.gem "cucumber", :version => '0.3.11'
 config.gem "webrat", :version => '0.4.3'

@@ -7,7 +7,7 @@ activesupport -v2.3.5
 authlogic -v1.4.0
 builder -v2.1.2
 cgi_multipart_eof_fix -v2.5.0
-cucumber -v0.1.16
+cucumber -v0.3.11
 daemons -v1.1.0
 diff-lcs -v1.1.2
 echoe -v4.3.1
@@ -23,8 +23,8 @@ polyglot -v0.3.1
 polyglot -v0.2.9
 rack -v1.0.1
 rails -v2.3.5
-rspec -v1.1.12
-rspec-rails -v1.1.12
+rspec -v1.2.6
+rspec-rails -v1.2.6
 rubyforge -v2.0.4
 spicycode-rcov -v0.8.1.5.0
 sqlite3-ruby -v1.2.4
