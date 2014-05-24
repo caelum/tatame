@@ -25,4 +25,16 @@ class Dojo < ActiveRecord::Base
   def block_list?
     Time.now > block_list_date && Time.now < date
   end
+  
+  
+  def self.programming_languages
+    @languages = Hash.new(0)
+    @dojos = Dojo.all
+
+    @dojos.each do |dojo|
+      @languages[dojo.programming_language]+= 1
+    end
+    @languages
+  end
+
 end
